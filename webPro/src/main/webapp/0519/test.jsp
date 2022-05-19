@@ -18,8 +18,9 @@
 	</pre>
 	
 	<%
+	//post방식으로 데이터를 받을 때는 캐릭터 셋팅 필요
+	request.setCharacterEncoding("utf-8");
 	//데이터 전달받기
-	//request.setCharacterEncoding("utf-8");
 	String id = request.getParameter("userId");
 	String pw = request.getParameter("userPw");
 	%>

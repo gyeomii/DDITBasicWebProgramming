@@ -3,12 +3,58 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+input[type="image"] {
+	width : 50px;
+	height : 50px;
+	border: 2px dotted black;
+}
+</style>
+<script>
+function send(){
+	//alert("경고팝업");
+ 	//문서의 최상위 객체 document가 지원하는 getElementById 메소드를 활용해서 id에 접근
+	//var f3 = document.getElementById("f3");
+	var f3 = document.getElementsByTagName("form")[2];
+	//id영역을 변수f3에 저장 후 그안의 데이터들을 전송(=submit()) 
+	f3.submit();
+}
+</script>
 </head>
 <body>
+	<h4>get방식으로 서버 페이지에 요청하기</h4>
 	<form action="test.jsp" method="get"> <!-- Java Server Page -->
 		id : <input name="userId"> <br> <!-- <input type="text"> -->
 		pw : <input type="password" name="userPw"> <br>
 		<input type="submit" value = "send"> <br> <!-- 전송기능 -->
+	</form>
+	
+	<hr>
+		
+	<h4>post방식으로 서버 페이지에 요청하기</h4>
+	<form action="test.jsp" method="post"> <!-- Java Server Page -->
+		id : <input name="userId"> <br> <!-- <input type="text"> -->
+		pw : <input type="password" name="userPw"> <br>
+		<input type="submit" value = "send"> <br> <!-- 전송기능 -->
 	</form>	
+	
+	<hr>
+	
+	<h4>input type = "button"으로 변경 후 전송기능 부여하기</h4>
+	<form action="test.jsp" method="post"> <!-- Java Server Page -->
+		id : <input name="userId"> <br> <!-- <input type="text"> -->
+		pw : <input type="password" name="userPw"> <br>
+		<input type="button" value="button" onclick="send()"> <br> <!-- 전송기능 -->
+	</form>	
+	
+	<hr>
+	
+	<h4>input type = "image"로 서버 페이지에 요청하기</h4>
+  	<form action="test.jsp" method="post">
+    	아이디<input type="text" name="id"> <br>
+   	 	비밀번호<input type="password" name="pw"> <br>
+    	<input type="image" src="../images/mew3.png">
+    	<input type="reset" value="reset">
+  	</form>
 </body>
 </html>
