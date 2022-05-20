@@ -14,14 +14,13 @@
 
 	area = area.replace("\r", "").replace("\n", "<br>");
 	String carArr = "";
-	int cnt = 0;
+
 	for (int i = 0; i < car.length; i++) {
-		if (cnt == 0) {
+		if (i == 0) {
 			carArr += car[i];
 		} else {
 			carArr += " , " + car[i];
 		}
-		cnt++;
 	}
 	// \r\n를 <br>태그로 변경
 	%>
