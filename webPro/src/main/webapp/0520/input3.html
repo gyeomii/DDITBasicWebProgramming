@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+body{
+	text-align: center;
+}
+</style>
+</head>
+<body>
+	<pre>
+- textarea 입력시 엔터기호가 삽입된다
+- 엔터기호는 \r\n의 기능이 포함되어 있다
+- \r : carrage return
+- \n : line feed
+- 서버에서 처리할 때 &lt;br>태그로 변경해 줄바꿈 처리 해야 한다
+</pre>
+	<form action="test3.jsp" method="post">
+		<textarea name="ta" rows="10" cols="50"></textarea>
+		
+		<hr>
+		
+		<select name="cars" multiple size="5">
+			<!-- <option value="서버로 전달될 값">보여지는 값</option> -->
+			<option value="Bugatti">부가티</option>
+			<option value="Maserati">마세라티</option>
+			<option value="Ferari">페라리엔초</option>
+			<option value="Rools-Royce">롤스로이스</option>
+			<option value="Bentely">벤틀리</option>
+		</select> <br>
+		
+		<input type="submit"> 
+		<input type="button" value="send">
+		<button>전송</button>
+		<button type="button">확인</button>
+		
+	</form>
+</body>
+</html>
