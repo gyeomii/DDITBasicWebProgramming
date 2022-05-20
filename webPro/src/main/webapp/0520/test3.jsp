@@ -12,6 +12,7 @@
 	String[] car = request.getParameterValues("cars");
 	String area = request.getParameter("ta");
 
+	area = area.replace("\r", "").replace("\n", "<br>");
 	String carArr = "";
 	int cnt = 0;
 	for (int i = 0; i < car.length; i++) {
@@ -23,7 +24,6 @@
 		cnt++;
 	}
 	// \r\n를 <br>태그로 변경
-	area = area.replaceAll("\r", "").replaceAll("\n", "<br>");
 	%>
 	&lt텍스트 영역> <br>
 	<%=area%> <br>
