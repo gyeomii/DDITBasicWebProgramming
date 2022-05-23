@@ -23,6 +23,22 @@ a:active{
 	color: white;
 	text-decoration: line-through;
 }
+.p1:nth-child(odd) {
+  border: 2px dotted green;
+/*   border-width: 4px;  */
+/*   border-style: dotted; */
+/*   border-color: navy; */
+}
+.p1:nth-child(even) {
+  border: 2px solid red;
+}
+.p1:nth-child(4) {
+  border: 4px solid violet;
+}
+.p1:nth-child(3n+1) {
+	background-color: black;
+	color: gold;
+}
 </style>
 </head>
 <body>
@@ -37,6 +53,19 @@ a:active{
 		<a href="http://www.ddit.or.kr">대덕인재개발원</a> 
 		<a href="http://www.cgv.co.kr">CGV</a>
 		<a href="http://www.pizzahut.com">피자헛</a>
+	</div>
+	
+	<div>
+	<p class="p1">디즈니+</p>
+    <p class="p1">넷플릭스</p>
+    <p class="p1">디즈니+</p>
+    <p class="p1">넷플릭스</p>
+    <p class="p1">디즈니+</p>
+    <p class="p1">넷플릭스</p>
+    <p class="p1">디즈니+</p>
+    <p class="p1">넷플릭스</p>
+    <p class="p1">디즈니+</p>
+    <p class="p1">넷플릭스</p>
 	</div>
 </body>
 </html>
