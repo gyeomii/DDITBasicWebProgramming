@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+div {
+	width: 100px;
+	height: 40px;
+	border: solid gray;
+	margin: 5px;
+}
+#d0 {
+	position: static;
+	bottom: 100px;
+	right: 100px;
+}
+#d1{
+	position: relative;
+	bottom: -50px;
+	right: -50px;
+}
+#d2{
+	position: absolute;
+	top: 50px;
+	left: 50px;
+}
+</style>
+</head>
+<body>
+	<h4>정적위치(static) : 정상적인 흐름으로 배치</h4>
+	<div>static1</div>
+	<div id="d0">static2</div>
+
+	<h4>상대위치(relative) : 정적위치를 기준으로 배치</h4>
+	<div>relative1</div>
+	<div id="d1">relative2</div>
+
+	<h4>절대위치(absolute) : 특정부모를 기준으로 배치</h4>
+	<div>absolute1</div>
+	<div id="d2">absolute2</div>
+
+	<h4>정적위치(fixed) : 컨테이너(브라우저, 윈도우)의 원점을 기준으로 배치</h4>
+	<div>fixed1</div>
+	<div id="d3">fixed2</div>
+</body>
+</html>
