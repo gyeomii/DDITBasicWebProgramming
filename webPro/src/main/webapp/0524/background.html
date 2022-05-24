@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+div {
+  width: 400px;
+  height: 500px;
+  border: 10px dashed;
+  padding: 50px;
+}
+#d1 {
+/*   background-color: #123456; */
+/*   background-clip: content-box;		/* 배경색 시작 지점 지정 */
+  background-image: url("../images/mew1.jpg");
+  background-origin: content-box;		/* 배경이미지 시작 지점 지정 */
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: local;	
+  overflow: auto;
+  float: left;
+}
+#d2 {
+  position: absolute;
+  left: 700px;
+    /* 축약 url() position/size repeat attachment */
+  background: url(../images/mew2.jpg) center center/100px;
+}
+
+</style>
+</head>
+<body>
+  <div id="d1"></div>
+  <div id="d2"></div>
+</body>
+</html>
