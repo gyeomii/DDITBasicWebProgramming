@@ -5,28 +5,43 @@
 <title>Insert title here</title>
 <style>
 div {
-  width: 400px;
-  height: 500px;
-  border: 10px dashed;
-  padding: 50px;
-}
-#d1 {
-/*   background-color: #123456; */
-/*   background-clip: content-box;		/* 배경색 시작 지점 지정 */
-  background-image: url("../images/mew1.jpg");
-  background-origin: content-box;		/* 배경이미지 시작 지점 지정 */
-  background-size: 100%;
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-attachment: local;	
-  overflow: auto;
-  float: left;
+	width: 400px;
+	height: 500px;
+	border: 10px dashed;
+	padding: 50px;
 }
 
+#d1 {
+	/*   background-color: #123456; */
+	/*   background-clip: content-box;*/ /* 배경색 시작 지점 지정 */
+	background-image: url("../images/mew3.png");
+	background-origin: content-box; /* 배경이미지 시작 지점 지정 */
+	background-size: 100%;
+	background-repeat: no-repeat;
+	background-position: 10% 90%;
+	background-attachment: local;
+	overflow: auto;
+	float: left;
+	
+	/* 
+  축약
+  	보통 color or image position/size repeat attachment....순으로 작성하지만
+  	순서 상관 없이 표현 가능
+
+  position
+  	x축과 y축에 left,right,top,bottom,center를 기입하거나
+  	%, px 단위를 이용해 위치를 조정한다
+  	
+  size
+  	size와 position은 같은 단위를 공유하므로 /로 구분해 작성해야 한다
+  	또한, (축약시) size만 사용할 경우에도 반드시 position값을 명시해야 한다 
+  */ 
+/* 	background: url(../images/mew2.png) center botton/80% no-repeat; */
+}
 </style>
 </head>
 <body>
-  <div id="d1"></div>
-  <div id="d2"></div>
+	<div id="d1"></div>
+	<div id="d2"></div>
 </body>
 </html>
