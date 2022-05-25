@@ -11,19 +11,36 @@ div {
 	margin: 5px;
 }
 #d0 {
-	position: static;
-	bottom: 100px;
-	right: 100px;
+  background-image: linear-gradient(45deg, yellow, white, red);
+  position: static; /* default */
+  bottom: 100px;	/* 방향설정이 적용되지 않음 */
+  right: 100px;
 }
-#d1{
-	position: relative;
-	bottom: -50px;
-	right: -50px;
+#d1 {
+  background-image: radial-gradient(red, purple, pink);
+  position: relative;
+  top: 50px;
+  left: 50px;
 }
 #d2{
+	background-image: conic-gradient(from 0deg, red,orange,yellow,green,blue,navy,purple);
 	position: absolute;
 	top: 50px;
 	left: 50px;
+}
+#d3{
+	position: relative; /*부모로 지정*/
+}
+#d4{
+    background-image: repeating-linear-gradient(45deg, red 0px, red 5px, blue 5px, blue 10px);
+	position: absolute; /*#d3을 부모로 하여 절대위치 배치*/
+	left: 50px;
+}
+#d5{
+	background-image: repeating-linear-gradient(45deg, orange 0px, orange 5px, green 5px, green 8px);
+	position: fixed;
+	top: 100px;
+	left: 100px;
 }
 </style>
 </head>
@@ -37,11 +54,13 @@ div {
 	<div id="d1">relative2</div>
 
 	<h4>절대위치(absolute) : 특정부모를 기준으로 배치</h4>
-	<div>absolute1</div>
-	<div id="d2">absolute2</div>
+	<div id="d2">absolute1</div>
+	<div id="d3">absolute2
+		<div id="d4">absolute3(absolute2의 자식)</div>
+	</div>
 
 	<h4>정적위치(fixed) : 컨테이너(브라우저, 윈도우)의 원점을 기준으로 배치</h4>
-	<div>fixed1</div>
+	<div id="d5">fixed1</div>
 	<div id="d3">fixed2</div>
 </body>
 </html>
