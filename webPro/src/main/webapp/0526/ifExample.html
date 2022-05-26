@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>prompt</title>
+<style>
+input{
+	width: 50%;
+	height: 200px;
+}
+</style>
+</head>
+<body>
+<h1>숫자 2개와 연산자를 입력받아 계산결과를 출력하시오</h1>
+  <input type="button" value="연산 시작" onclick="replay()">
+  <div id="result"></div>
+	<script>
+		let replay = function() {
+			var input;
+			input = prompt("첫번째 숫자를 입력하세요", "정수 입력");
+			let num1 = parseInt(input);
+
+			let operator = prompt("연산자를 입력하세요", "* , / , - , + ")
+
+			input = prompt("두번째 숫자를 입력하세요", '정수 입력');
+			let num2 = parseInt(input);
+
+			let sum;
+			if (operator == "*") {
+				sum = num1 * num2;
+			} else if (operator == "/") {
+				sum = num1 / num2;
+			} else if (operator == "+") {
+				sum = num1 + num2;
+			} else if (operator == "-") {
+				sum = num1 - num2;
+			} else {
+				alert("올바른 값을 입력하세요.")
+				return replay();
+			}
+
+			//document.write(num1 + " " + operator + " " + num2 + " = " + sum);
+			document.getElementById("result").textContent = num1 + " " + operator + " " + num2 + " = " + sum;
+		}
+	</script>
+</body>
+</html>
