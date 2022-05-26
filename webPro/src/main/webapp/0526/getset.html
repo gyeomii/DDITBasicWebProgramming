@@ -4,8 +4,35 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="../css/outStyle.css">
+<script>
+window.onload=function(){
+	v_div = document.getElementByID("d1");
+}
+	function proc1() {
+		var v_div = document.getElementById("d1");
+		//get
+		alert(v_div.innerHTML);
+		//set
+		document.getElementById("result").innerHTML = "<span style='color: orange'>innerHTML</span>";
+	}
+	function proc2(){
+		alert(v_div.innerText);
+	}
+</script>
 </head>
 <body>
+
+	<div id="d1">
+		안녕 만나서 반갑다<span style="display: none">숨겨진텍스트</span>
+	</div>
+	
+	<input type="button" value="innerHTML" onclick="proc1()">
+	<input type="button" value="innerText" onclick="proc2()">
+	<input type="button" value="textContent" onclick="proc3()">
+	<input type="button" value="value" onclick="proc4()">
+
+	<div id="result"></div>
+	
 	<pre>
 	요소에 값을 읽어오거나 설정하는 키워드
 	
@@ -31,11 +58,12 @@
 		연속되는 공백은 무시(= 하나의 공백으로 처리)
 		원시 텍스트의 랜더링된 상태(=스타일 적용 후)를 보여줌
 	
-	textConent
+	textContent
 		node의 속성
 		해당 노드의 텍스트값(=원시 텍스트)을 읽어옴
 		표현된 공백을 그대로 처리하며,
 		숨겨진 텍스트도 출력	
 	</pre>
+
 </body>
 </html>
