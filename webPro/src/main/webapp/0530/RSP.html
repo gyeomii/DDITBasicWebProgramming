@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/outStyle.css">
+<style>
+h4 {
+	display: inline-block;
+}
+</style>
+</head>
+<body>
+<script>
+let first ="";
+let second ="";
+let result = "";
+let finalResult ="";
+function rsp(){
+	first = prompt("첫번째 사람의 가위바위보를 입력하세요");
+	second = prompt("두번째 사람의 가위바위보를 입력하세요");
+	
+	if(first == second) {
+		result = "무승부";
+	}else if(first == ("가위") && second == ("바위")
+			 ||first == ("바위") && second ==("보")
+			 ||first == ("보") && second == ("가위")){
+		result = "두번째 사람 승리";
+	}else {
+		result = "첫번째 사람 승리";
+	}
+	/* finalResult = "첫번째 사람 : " + first + "<br>";
+	finalResult += "두번째 사람 : " + second + "<br>";
+	finalResult += "결과 : " + result + "<br>"; */
+	
+	//백틱(backtick/ grave accent)
+	//문자열과 변수의 값을 하나의 문자열 안에 기술할 수 있다
+	//백틱문자열 안에 변수는 ${} 기호 안쪽에 기술한다.
+	finalResult = `첫번째 사람 : ${first} <br>`;
+	finalResult += `두번째 사람 : ${second} <br>`;
+	finalResult += `결과 : ${result} `;
+	
+	document.getElementsByTagName('div')[0].innerHTML = finalResult;
+}
+</script>
+<h1>가위바위보 입력</h1>
+<input type="button" value="시작" onclick="rsp()">
+<div></div>
+</body>
+</html>

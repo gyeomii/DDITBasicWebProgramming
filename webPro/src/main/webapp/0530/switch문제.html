@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/outStyle.css">
+<style>
+h4 {
+	display: inline-block;
+}
+
+div {
+	border: 1px solid blue;
+	height: 30px;
+}
+</style>
+</head>
+<body>
+	<script>
+	var input;
+		function check() {
+			input = prompt("점수를 입력하세요");
+			input = parseInt(input);
+			if (input > 100) {
+				input = prompt("100점 만점으로 입력하세요");
+				grade();
+			} else {
+				grade();
+			}
+		}
+		function grade() {
+			let score = parseInt(input / 10);
+			switch (score) {
+			case 10:
+			case 9:
+				document.getElementsByTagName('div')[0].innerText = "A";
+				break;
+			case 8:
+				document.getElementsByTagName('div')[0].innerText = "B";
+				break;
+			case 7:
+				document.getElementsByTagName('div')[0].innerText = "C";
+				break;
+			case 6:
+				document.getElementsByTagName('div')[0].innerText = "D";
+				break;
+			case 5:
+			case 4:
+			case 3:
+			case 2:
+			case 1:
+			case 0:
+				document.getElementsByTagName('div')[0].innerText = "F";
+				break;
+			}
+		}
+	</script>
+	<h1>학점을 입력하세요</h1>
+	<input type="button" value="학점계산" onclick="check()">
+	<div></div>
+</body>
+</html>
