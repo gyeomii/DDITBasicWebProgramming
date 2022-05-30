@@ -4,21 +4,55 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="../css/outStyle.css">
+<style>
+label {
+  display: inline-block;
+  width: 80px;
+}
+span {
+  display: inline-block;
+  background-color: yellow;
+  width: 100px;
+  height: 20px;
+/*   border: solid red; */
+}
+</style>
 </head>
 <body>
   <form>
     <label for="x">첫번째 값</label>
-    <input id="x">
+    <input id="x"> <br>
     
     <label for="y">두번째 값</label>
-    <input id="y">
+    <input id="y"> <br>
     
     <label for="result">결과 값</label>
-    <input id="result">
+    <input id="result"> <br>
     
+    <input type="button" value="+" onclick="calc('+')">
+    <input type="button" value="-" onclick="calc('-')">
+    <input type="button" value="*" onclick="calc('*')">
+    <input type="button" value="/" onclick="calc('/')">
     
-    
-    
+    <p>
+      <label for="sp1">첫번째 값</label>
+      <span id="sp1"></span>
+    </p>
+    <p>
+      <label for="sp2">두번째 값</label>
+      <span id="sp2"></span>
+    </p>
+    <p>
+      <label for="sp3">결과 값</label>
+      <span id="sp3"></span>
+    </p>
   </form>
+<script>
+function calc(oper){
+	//사칙연산 구현
+	
+	
+}
+</script>
 </body>
 </html>
