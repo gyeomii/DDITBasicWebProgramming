@@ -33,6 +33,8 @@ span {
     <input type="button" value="-" onclick="calc('-')">
     <input type="button" value="*" onclick="calc('*')">
     <input type="button" value="/" onclick="calc('/')">
+    <input type="button" value="reset" onclick="reset()">
+    
     
     <p>
       <label for="sp1">첫번째 값</label>
@@ -48,10 +50,55 @@ span {
     </p>
   </form>
 <script>
+let xVal;
+let yVal;
 function calc(oper){
-	//사칙연산 구현
 	
+	xVal = parseInt(document.getElementById('x').value);
+	yVal = parseInt(document.getElementById('y').value);
+	let result = "";
+	switch(oper){
+	case '+':
+		result = add();
+		break;
+	case '-':
+		result = sub();
+		break;
+	case '*':
+		result = multi();
+		break;
+	case '/':
+		result = divide();
+		break;
+	}
+	document.getElementById('result').value = result;
+	document.getElementById('sp1').innerHTML = xVal;
+	document.getElementById('sp2').innerHTML = yVal;   
+	document.getElementById('sp3').innerHTML = result;
 	
+}	
+
+function add(){
+	return xVal + yVal;
+}
+
+function sub(){
+	return xVal - yVal;
+}
+
+function multi(){
+	return xVal * yVal;
+}
+
+function divide(){
+	let rst = xVal / yVal;
+	return rst.toFixed(3);
+}
+function reset(){
+	 document.getElementById("x").value = "";
+     document.getElementById("y").value = "";
+     document.getElementById("oper").value = "";
+     document.getElementById("result").value = "";
 }
 </script>
 </body>
