@@ -14,6 +14,11 @@
 </pre>
 <%
 	String nm = request.getParameter("name");
+	
+	//처리구조 - MVC1, MVC2
+	//MVC2 - model, view, controller로 세분화 시켜 데이터를 처리
+	//view 와 controller역할을 jsp에서 담당
+	// service와 dao로 연결하여 sql문 실행 후 데이터 다시 반환
 %>
 
 <%-- 전달받은 요청데이터 : <%=nm %> --%>
