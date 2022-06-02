@@ -46,9 +46,15 @@
 		}
 	}
 	let selfObj = new SelfObj("IU", "29")
-	console.log(selfObj.name);
-	console.log(selfObj["age"]);
-	console.log(selfObj.hello());
+	console.log(selfObj);
+	console.log(Object.keys(selfObj));
+	console.log(Object.values(selfObj));
+	console.log(Object.entries(selfObj));
+//	console.log(selfObj["age"]);
+//	console.log(selfObj.hello());
+
+//	JSON데이터로 변환
+	console.log(JSON.stringify(selfObj));
 	
 </script>
 </body>
