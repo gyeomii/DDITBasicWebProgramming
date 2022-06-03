@@ -44,7 +44,6 @@ public class Dao {
 			}
 			//객체 close
 			JDBCUtil.close(conn, stmt , rs);
-			System.out.println("출력 끝");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
