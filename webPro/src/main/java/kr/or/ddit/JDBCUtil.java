@@ -31,7 +31,7 @@ public class JDBCUtil {
 		String userId = "KSG97";
 		String password = "java";
 		try {
-			DriverManager.getConnection(url, userId, password);
+			conn = DriverManager.getConnection(url, userId, password);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

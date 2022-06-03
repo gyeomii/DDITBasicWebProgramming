@@ -1,8 +1,26 @@
 package kr.or.ddit;
 
+import java.util.Map;
+
 public class Service {
+	private Dao dao;
+	private static Service service;
+	//싱글톤 방식
+	//1. private Constructor
+	private Service() {
+		dao = dao.getInstance();
+	}
+	//2. static method
+	public static Service getinstance() {
+		if(service == null) {
+			service = new Service();
+		}
+		return service;
+	}
+	
 	//메소드 생성
-	public void selectMemberOne(String name) {
-		   //반환할 데이터를 dao에 요청
+	public Map<String, Object> selectMemberOne(String name) {
+		Map<String, Object> map = dao.selectMemberOne(name);
+		return map;
 	}
 }
