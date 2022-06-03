@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/outStyle.css">
+<script>
+	function arrInput() {
+		let arr = new Array;
+		let name = "";
+		do {
+			name = prompt("사람 이름을 입력하세요");
+			if (name != " ") {
+				arr.push(name);
+			}
+		} while (name != " " || name == null)
+		let result = `입력된 이름 : ${arr}`;
+		document.getElementsByTagName('div')[0].innerText = result;
+	}
+	function numInput() {
+		let arr = new Array;
+		let num = 0;
+		do {
+			num = prompt("숫자를 입력하세요")
+			if (arr.indexOf(num) == -1) {
+				arr.push(num);
+			} else {
+				alert("중복 값 입력")
+			}
+		} while (arr.length != 5)
+
+		let result = `입력된 숫자 : ${arr}`;
+		document.getElementsByTagName('div')[1].innerText = result;
+	}
+</script>
+</head>
+<body>
+	<h4>사람 이름을 입력받아 출력</h4>
+	<input type="button" value="배열입력" onclick="arrInput()">
+	<div></div>
+	<h4>중복되지 않은 정수를 입력받아 출력</h4>
+	<input type="button" value="배열입력" onclick="numInput()">
+	<div></div>
+</body>
+</html>
