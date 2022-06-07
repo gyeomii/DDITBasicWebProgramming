@@ -63,9 +63,17 @@ function substring(){
 }
 //split(구분자) : 구분자 기준으로 문자열을 분리해 배열로 반환
 function split(){
-  str.split();
+  let arr = str.split(" ");
+  let result = `문자열 개수 : ${str.length}, str[2] : ${str[2]} <br>`;
+  	  result += `배열 개수 : ${arr.length}, arr[2] : ${arr[2]}`;
+  document.getElementsByTagName('div')[4].innerHTML = result;
 }
-
+//replace('찾을 문자열','변경할 문자열') : 문자열을 찾아 문자열로 치환
+function replace(){
+	let ta = document.getElementsByTagName('textarea')[0].value;
+	ta = ta.replace(/\r/g, "").replace(/\n/g,"<br>");
+	  document.getElementsByTagName('div')[5].innerHTML = ta;
+}
 </script>
 </head>
 <body>
@@ -86,7 +94,7 @@ function split(){
   
   <input type="button" value="split" onclick="split()">
   <div></div>  <br>
-  
+  <textarea></textarea>
   <input type="button" value="replace" onclick="replace()">
   <div></div>  <br>
   
