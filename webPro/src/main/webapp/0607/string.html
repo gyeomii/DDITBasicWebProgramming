@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/outStyle.css">
+<script>
+let str = "우리나라 좋은나라 대한민국 만세~~ 독도는 우리땅~~ABCabc0123";
+
+//charAt(index) : index번째 문자를 반환
+//charCodeAt(idx) : index번째 문자 아스키코드/유니코드를 반환
+//					A->65, a->97, 0->48
+function charAt(){
+  let result = str.charAt(3) + "<br>";
+  result += str.charCodeAt(3);		//해당 문자열의 유니코드출력
+  
+  
+  document.querySelector('div').innerHTML = result;
+}
+
+
+
+</script>
+</head>
+<body>
+  <h4>우리나라 좋은나라 대한민국 만세~~ 독도는 우리땅~~ABCabc0123</h4>
+  
+  <input type="button" value="charAt" onclick="charAt()">
+  <div></div>  <br>
+  
+  <input type="button" value="(last)indexOf" onclick="indexOf()">
+  <div></div>  <br>
+  
+  <input type="button" value="trim" onclick="trim()">
+  <div></div>  <br>
+  
+  <input type="button" value="substring외" onclick="substring()">
+  <div></div>  <br>
+  
+  <input type="button" value="split" onclick="split()">
+  <div></div>  <br>
+  
+  <input type="button" value="replace" onclick="replace()">
+  <div></div>  <br>
+  
+</body>
+</html>
