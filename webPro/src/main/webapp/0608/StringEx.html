@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/outStyle.css">
+</head>
+<body>
+<pre>
+	주민등록번호를 입력받아 생일, 성별, 나이 출력하기
+	ex) 110324-4432168
+	생일 : 2011년 3월 24일
+	성별 : 여자
+	나이 : 11살
+</pre>
+	<input type="button" value="확인" onclick="proc1()">
+	<div></div>
+<hr>
+<pre>
+ 	주민등록번호 유효성 검증
+ 	1. M을 제외한 모든 자리에 2~9까지 순서대로 곱하여 총합을 구함
+ 	2. 총합을 11로 나누어 나머지를 구함
+ 	3. 11에서 나머지를 뻄
+ 	4. 3번의 결과가 10일때 0, 11일때 1로 변환(10 이전 값은 그대로 사용)
+ 	5. 4번의 결과와 M자리가 같으면 유효
+</pre>
+	<input type="button" value="확인" onclick="proc2()">
+	<div></div>
+<script>
+function proc1(){
+	let a = prompt("주민등록번호를 입력하세요","000000-0000000");
+	
+	//자료추출(index로 접근 -> 년도: 0,1번/ 월: 2,3번/ 일: 4,5번/ 성별: 7번 )
+	let yy = a.substring(0,2); 	//slice(0,2)  substr(0,length)
+	let mm = a.substring(2,4);	//slice(2,4)  substr(2,2)
+	let dd = a.substring(4,6);	//slice(4,6)  substr(4,2)	
+	let g = a.substring(7,8);   //slice(7,8)  substr(7,1)  charAt(7)
+	// 출생년도
+	if(g == "1" || g == "2"){
+		yy = "19" + yy;
+	}else if(g == "3" || g == "4"){
+		yy = "20" + yy;
+	}
+	// 성별
+	let gender="";
+	if(g == "1" || g == "3"){
+		 gender = "남자";
+	}else if(g == "2" || g == "4"){
+		gender = "여자";
+	}
+	// 나이
+	let now = new Date();
+	let year = now.getFullYear();
+	let age = year - yy;
+	// 생일
+	let bir = yy + "년 " +  mm + "월 " + dd + "일";
+	// 출력
+	let result = `주민등록번호 : ${a.substr(0,8)}******<br>`;
+	result += `생년월일 : ${bir} <br>`;
+	result += `성별 : ${gender} <br>`;
+	result += `나이 : ${age} <br>`;
+	document.querySelector('div').innerHTML = result;
+}
+function proc2(){
+	let a = prompt("주민등록번호를 입력하세요","ABCDEF-GHIJKLM");
+	let idNum = "";
+	//하이픈 제거
+	//1.replace()
+	idNum = a.replace("-","");
+	//2.split() // a.split("-");
+	//let chkNum = "234567892345"
+	//1. M을 제외한 나머지 곱하여 총합 구하기(A*2 + B*3 + C*4 + ... + H*9 + I*2 + ...)
+	let sum = 0;
+	for(i=1; i<idNum.length; i++){
+		if(idNum.charAt(i)=="0"){
+			continue;
+		}
+		sum += idNum.charAt(i) * (i%8+2);     //num[i];  
+	}
+	//2,3. 총합을 11로 나누고 11에서 나눈 나머지를 뺌
+	let chk = 11 - sum%11;
+	//4. 결과가 10이면 0. 11이면 1, 0~9그대로 사용
+		chk %= 10;
+	//5. 결과와 M자리 값이 같으면 정확
+	let last = a.charAt(idNum.length -1);
+	let result = "";
+	console.log(last);
+	if(chk == last){
+		result += "정확한 주민번호 입니다."
+	}else{
+		result += "잘못된 주민번호 입니다."
+	}
+		document.getElementsByTagName('div')[1].innerHTML = result;
+}
+</script>
+</body>
+</html>

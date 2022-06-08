@@ -73,7 +73,18 @@ function replace(){
 	let ta = document.getElementsByTagName('textarea')[0].value;
 	ta = ta.replace(/\r/g, "").replace(/\n/g,"<br>");
 	  document.getElementsByTagName('div')[5].innerHTML = ta;
+
 }
+//div내용 가져오기
+function proc(){
+//	  document.getElementsById('newDiv')		//ID
+//    document.getElementsByTagName('div')[6]	//Tag
+//	  document.querySelector('#newDiv')			//ID
+//	  document.ElementsByClassName('newDivCls') //Class
+	let dVal = document.querySelector('.newDivCls').innerText; //.innerHTML .TextContent
+	//dVal = dVal.replace(/<br>/g,"");
+	document.getElementsByTagName('textarea')[1].value = dVal;
+	}
 </script>
 </head>
 <body>
@@ -98,5 +109,13 @@ function replace(){
   <input type="button" value="replace" onclick="replace()">
   <div></div>  <br>
   
+  <div id="newDiv" class="newDivCls">
+  우리집 강아지는<br>
+  복슬강아지<br>
+  학교갔다 돌아오면<br>
+  멍멍멍
+  </div>
+  <textarea rows="4" cols="40"></textarea>
+  <input type="button" value="divToTextarea" onclick="proc()">
 </body>
 </html>
