@@ -33,11 +33,12 @@ function randomColor(btn){
 	
 	a = setInterval(function(){
 		//10진수(0~255) 색상 생성
-		let cR = parseInt(Math.random()*256);
-		let cG = parseInt(Math.random()*256);
-		let cB = parseInt(Math.random()*256);
+		let cR = parseInt(Math.random()*256).toString(16);
+		let cG = parseInt(Math.random()*256).toString(16);
+		let cB = parseInt(Math.random()*256).toString(16);
 		
-		let v_div = document.querySelector('div').style.backgroundColor = `rgb(${cR},${cG},${cB})`;
+//		let v_div = document.querySelector('div').style.backgroundColor = `rgb(${cR},${cG},${cB})`;//10진수
+		let v_div = document.querySelector('div').style.backgroundColor = `#${cR}${cG}${cB}`;//16진수
 	},500);
 }
 function clr(){
