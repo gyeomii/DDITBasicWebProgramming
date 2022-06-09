@@ -15,16 +15,36 @@ margin: 10px;
 </style>
 </head>
 <body>
-	<input type="button" value="setInterval" onclick="randomColor()">;
+	<input type="button" value="setInterval" onclick="randomColor(this);">
+	<input type="button" value="clear" onclick="clr();">
 	<div>
 		setInterval(fn,ms) : ms에 지정된 시간이 경과될 때마다 random() 이용해서 배경색 변경
 	</div>
 </body>
 <script>
-function randomColor(){
-	setInterval(function(){
+let a;
+let intervalButton;
+function randomColor(btn){
+	// 실행 후 버튼 사라짐 or 비활성화
+	//btn.style.display = "none";
+	intervalButton = btn;
+	intervalButton.setAttribute('disabled','true');
+
+	
+	a = setInterval(function(){
+		//10진수(0~255) 색상 생성
+		let cR = parseInt(Math.random()*256);
+		let cG = parseInt(Math.random()*256);
+		let cB = parseInt(Math.random()*256);
 		
-	},1000);
+		let v_div = document.querySelector('div').style.backgroundColor = `rgb(${cR},${cG},${cB})`;
+	},500);
+}
+function clr(){
+	//사라진 버튼 나타남 or 활성화
+	intervalButton.removeAttribute('disabled');
+	let v_div = document.querySelector('div').style.backgroundColor = "white";
+	clearInterval(a);
 }
 </script>
 </html>

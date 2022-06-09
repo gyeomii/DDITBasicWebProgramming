@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/outStyle.css">
+</head>
+<script>
+window.onload=function(){
+	// 선택자에 이벤트 부여
+	let strBtn = document.querySelector('#str');
+	strBtn.addEventListener('click', function(){
+		alert("시작");
+	});
+	document.querySelector('#end').addEventListener('click',function(){
+		alert("중지");
+	});
+}
+</script>
+<body>
+	<input type="button" value="시작" id="str">
+	<input type="button" value="중지" id="end">
+</body>
+</html>
