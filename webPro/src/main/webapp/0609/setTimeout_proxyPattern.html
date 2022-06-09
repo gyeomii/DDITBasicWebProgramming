@@ -4,21 +4,51 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="../css/outStyle.css">
+<style>
+div{
+border: 1px solid;
+border-radius: 20px;
+height : 20px;
+padding: 20px;
+margin: 10px;
+}
+</style>
 </head>
 <script>
+let time;
 window.onload=function(){
 	// 선택자에 이벤트 부여
 	let strBtn = document.querySelector('#str');
-	strBtn.addEventListener('click', function(){
-		alert("시작");
-	});
-	document.querySelector('#end').addEventListener('click',function(){
-		alert("중지");
-	});
+	strBtn.addEventListener('click',proxyCall);
+	document.querySelector('#end').addEventListener('click',callEnd);
+}
+function randomColor(){
+	let color = [];
+	
+	for(i=0; i<3; i++){
+		color[i] = parseInt(Math.random()*256);
+	}
+	document.querySelector('div').style.backgroundColor = `rgb(${color[0]}, ${color[1]}, ${color[2]})`;
+	time = setTimeout(randomColor, 500);
+}
+
+//대리자 함수 생성 - proxy pattern
+let startChecker = false;
+function proxyCall(){// proxy pattern
+	if(!startChecker){
+		randomColor();
+	}
+	startChecker = true;
+}
+function callEnd(){
+	// clearTimeout(setTimeout개체)실행
+	clearTimeout(time);
+	startChecker = false;
 }
 </script>
 <body>
 	<input type="button" value="시작" id="str">
 	<input type="button" value="중지" id="end">
+	<div></div>
 </body>
 </html>
