@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/outStyle.css">
+<style>
+img{
+width : 200px;
+}
+</style>
+</head>
+<body>
+	<h4>버튼 클릭시 이미지 출력</h4>
+	<div>
+	<ul>
+	  <li>popcat_open.png</li> 
+	  <li>popcat_close.png</li> 
+	  <li>mew1.jpg</li> 
+	</ul>
+	<input type="button" value="showImage" onclick="addImage()">
+	</div>
+	
+	<h4>리스트 클릭시 이미지 출력</h4>
+	<div>
+	<ul>
+	  <li onclick="addImage2(this)" id="li1">popcat_open.png</li> 
+	  <li onclick="addImage2(this)" id="li2">popcat_close.png</li> 
+	  <li onclick="addImage2(this)" id="li3">mew1.jpg</li> 
+	</ul>
+	</div>
+	
+	<h4>이벤트 한번에 설정하기</h4>
+	<div>
+	<ul>
+	  <li class="add" id="li1">popcat_open.png</li> 
+	  <li class="add" id="li2">popcat_close.png</li> 
+	  <li class="add" id="li3">mew1.jpg</li> 
+	</ul>
+	</div>
+<script>
+//document.querySelector('.add');
+//document.getElementsByClassName('.add');
+//document.getElementsByClassName('.add').addEvent...;
+let addCls = document.getElementsByClassName('add');
+/*addCls.addEventListener('click', function(){ //이벤트 대상 못찾음
+	alert();
+}); */
+
+//정확한 대상을 선택하여 이벤트 부여 - for문 사용
+for (var i = 0; i < addCls.length; i++) {
+	addCls[i].addEventListener('click', function(){
+	let src = this.firstChild.data;
+	let img = document.createElement('img');
+	img.src = "../images/" + src;
+	this.appendChild(img);
+	});
+}
+
+
+function addImage(){
+	let list = document.querySelector("ul");
+	//list.getElementsByTagName('li');
+	let li = list.querySelectorAll('li');
+	for (var i = 0; i < li.length; i++) {
+		let src = li[i].firstChild.data;
+		let img = document.createElement('img');
+		img.src = "../images/" + src;
+		document.querySelector("div").appendChild(img);
+	}
+}
+
+function addImage2(ele){
+	let src = ele.firstChild.data;
+	let img = document.createElement('img');
+	img.src = "../images/" + src;
+	ele.appendChild(img);
+}
+</script>
+
+</body>
+</html>

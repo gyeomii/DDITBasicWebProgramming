@@ -31,7 +31,7 @@ div {
   &lt;li id="li3">333&lt;/li>
 &lt;/ul>
 	
-	<ul id="myList">
+	<ul id="myList"><!-- q -->
 	  <li id="li1">Coffee</li>
 	  <li id="li2">Tea</li>
 	  <li id="li3">333</li>
@@ -39,6 +39,8 @@ div {
 </pre>
 
 	Element 관련 속성<div></div>
+	<hr>
+	Node 관련 속성<div></div>
 
 <script>
 	let d1 = document.querySelector('div'); //출력 영역
@@ -63,6 +65,32 @@ div {
 	d1.innerHTML += document.querySelector('#li2').nextElementSibling + "<br>";
 	d1.innerHTML += document.querySelector('#li2').nextElementSibling.textContent + "<br>" ;
 	d1.innerHTML += document.querySelector('#li2').previousElementSibling.textContent;
+	
+	let d2 = document.getElementsByTagName('div')[1];  //출력 영역
+	
+	//parentNode	현재 노드의 부모 노드 반환
+	d2.innerHTML = document.querySelector('#li2').parentNode + "<br>";
+	d2.innerHTML += document.querySelector('#li2').parentNode.nodeName + "<br><br>"; //tagName ok
+	
+	//childNodes	모든 자식 요소를 배열로 반환
+	d2.innerHTML += document.querySelector('#myList').childNodes + "<br>";
+	d2.innerHTML += document.querySelector('#myList').childNodes[0].nodeName + "<br>";	//commentNode
+	d2.innerHTML += document.querySelector('#myList').childNodes[0].nodeValue + "<br>";	//q
+	d2.innerHTML += document.querySelector('#myList').childNodes[1] + "<br>";
+	d2.innerHTML += document.querySelector('#myList').childNodes[1].nodeName + "<br>";	//textNode
+	d2.innerHTML += document.querySelector('#myList').childNodes[1].nodeValue + "<br>";	//공백
+	//first(last)Child	배열의 첫번째(마지막) 자식 노드 반환
+	d2.innerHTML += document.querySelector('#myList').childNodes[2] + "<br>";	//LI			
+	d2.innerHTML += document.querySelector('#myList').childNodes[2].firstChild + "<br>";	//textNode			
+	d2.innerHTML += document.querySelector('#myList').childNodes[2].firstChild.nodeName + "<br>";		//text	
+	d2.innerHTML += document.querySelector('#myList').childNodes[2].firstChild.nodeValue + "<br><br>";	//coffee
+	
+	//next(previous)Sibling	현재 노드의 다음(이전) 형제 노드 반환
+	d2.innerHTML += document.querySelector('#li2').previousSibling + "<br>";
+	d2.innerHTML += document.querySelector('#li2').nextSibling + "<br>";
+	d2.innerHTML += document.querySelector('#li2').nextSibling.nodeName + "<br>";
+	d2.innerHTML += document.querySelector('#li2').nextSibling.nodeValue + "<br>";
+	
 </script>
 
 
