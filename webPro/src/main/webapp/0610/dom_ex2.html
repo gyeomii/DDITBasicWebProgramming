@@ -49,15 +49,14 @@ let addCls = document.getElementsByClassName('add');
 
 //정확한 대상을 선택하여 이벤트 부여 - for문 사용
 for (var i = 0; i < addCls.length; i++) {
-	addCls[i].addEventListener('click', function(){
+	addCls[i].addEventListener('click', addImage3);
+}
+function addImage3(){
 	let src = this.firstChild.data;
 	let img = document.createElement('img');
 	img.src = "../images/" + src;
 	this.appendChild(img);
-	});
 }
-
-
 function addImage(){
 	let list = document.querySelector("ul");
 	//list.getElementsByTagName('li');
