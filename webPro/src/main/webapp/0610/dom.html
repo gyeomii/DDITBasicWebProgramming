@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/outStyle.css">
+<style>
+pre {
+  column-count: 2;
+  
+}
+ul {
+  border: 1px dashed orange;
+  margin: 0px 20px;
+}
+li {
+  border: 1px solid brown;
+  margin: -10px 0;
+}
+div {
+  border: double gold;
+}
+</style>
+</head>
+<body>
+<pre>
+
+&lt;ul id="myList"> 
+  &lt;li id="li1">Coffee&lt;/li>
+  &lt;li id="li2">Tea&lt;/li>
+  &lt;li id="li3">333&lt;/li>
+&lt;/ul>
+	
+	<ul id="myList">
+	  <li id="li1">Coffee</li>
+	  <li id="li2">Tea</li>
+	  <li id="li3">333</li>
+	</ul>
+</pre>
+
+	Element 관련 속성<div></div>
+
+<script>
+	let d1 = document.querySelector('div'); //출력 영역
+	
+	//parentElement  현재 노드의 부모 요소 반환
+	d1.innerHTML = document.querySelector('#li1').parentElement + "<br>";
+	d1.innerHTML += document.querySelector('#li1').parentElement.tagName + "<br><br>";
+	
+	//children	모든 자식 요소 반환
+	d1.innerHTML += document.querySelector('#myList').children + "<br>";	
+	d1.innerHTML += document.querySelector('#myList').children[0] + "<br>";	
+	d1.innerHTML += document.querySelector('#myList').children[0].nodeName + '<br>';	//nodeName ok
+	d1.innerHTML += document.querySelector('#myList').children[2].textContent + "<br><br>";	//nodeValue로 접근시 null	
+	
+	//first(last)ElementChild	첫번째(마지막)요소 반환
+	d1.innerHTML += document.querySelector('#myList').firstElementChild + "<br>";
+	d1.innerHTML += document.querySelector('#myList').firstElementChild.tagName + "<br>";
+	d1.innerHTML += document.querySelector('#myList').firstElementChild.innerText + "<br>";
+	d1.innerHTML += document.querySelector('#myList').lastElementChild.innerText + "<br><br>";
+	
+	//next(previous)ElementSibling	현재 노드의 다음(이전) 형제 요소 반환
+	d1.innerHTML += document.querySelector('#li2').nextElementSibling + "<br>";
+	d1.innerHTML += document.querySelector('#li2').nextElementSibling.textContent + "<br>" ;
+	d1.innerHTML += document.querySelector('#li2').previousElementSibling.textContent;
+</script>
+
+
+
+</body>
+</html>
