@@ -1,27 +1,47 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset='utf-8'>
     <title>Page Title</title>
     <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
 
     <script>
-        function changeColor(c){
+        function changeColor(c) {
             document.getElementById("target").style.backgroundColor = c;
         }
-        window.onload=function(){
-            document.getElementsByTagName('input')[0].onclick = function(){
-                //target을 파랑색으로
+
+        window.onload = function () {
+            //target을 파랑색으로
+            document.getElementsByTagName('input')[0].onclick = function () {
                 //console.log(this.getAttribute('value'));
                 let a = this.getAttribute('value');
                 document.querySelector('#target').style.backgroundColor = a;
             }
+            document.getElementsByTagName('input')[0].onclick = function () {
+                console.log(">>>>>>>>>>>> 라디오버튼1번");
+            }
 
-            document.getElementsByTagName('input')[1]
+            //target을 녹색으로
+            let v_input1 = document.getElementsByTagName('input')[1];
+
+            //addEventListener() - 큐에 이벤트를 담고 순차적으로 활용 
+            v_input1.addEventListener('click', function () {
+                let a = this.getAttribute('value');
+                document.querySelector('#target').style.backgroundColor = a;
+            });
+
+            let v_input2 = document.getElementsByTagName('input')[1];
+            v_input2.addEventListener('click', function () {
+                console.log(">>>>>>>>>>>> 라디오버튼2번");
+            });
+
+        }
     </script>
 </head>
-<body id = "target">
-    <form method = "post">
+
+<body id="target">
+    <form method="post">
         <!-- <input type="radio" name="C1" value="v1" onclick="changeColor('lightblue')">파랑색
         <input type="radio" name="C1" value="v2" onclick="changeColor('lightgreen')">녹색 -->
         <input type="radio" name="C1" value="v1" onclick="changeColor('lightblue')">파랑색
@@ -29,4 +49,5 @@
     </form>
 
 </body>
+
 </html>
