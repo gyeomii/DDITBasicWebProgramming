@@ -3,13 +3,26 @@
 <head>
     <meta charset='utf-8'>
     <title>Page Title</title>
-    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <link rel="stylesheet" href="../css/outStyle.css">
+    <style>
+        div{
+            border: 1px solid red;
+            width: 800px;
+            height: 200px;
+            margin: 4px;
+        }
+        img{
+            width: 200px;
+            height: 200px;
+        }
+    </style>
 </head>
-<body>
 <script>
     function allowDrop(ev){
         //기본동작을 막는 함수(작성코드와의 충돌을 피하기 위해)
-        ev.preventDefault();//드랍을 허용하도록 함
+        //dragover이벤트가 발생하고 있는 순간
+        //그 이벤트를 중지시킴(=대상위로 드래그 되고있는 이벤트 자체를)
+       ev.preventDefault();//드랍을 허용하도록 함
     }
     function drag(ev){
         ev.dataTransfer.setData("text", ev.target.id);
@@ -20,9 +33,18 @@
         ev.target.appendChild(document.getElementById(data));
     }
 </script>
-
+<body>
+<pre>
+1. drag) 드래그를 사용하기 위해 draggable=true 속성 적용
+2. drag) ondragstart발생 시 dataTransfer에 타겟아이디 설정
+3. drop) ondragover발생시 드롭의 허용(allowDrop)을 위해 기본 이벤트 중지시킴
+4. drop) ondrop발생 시 dataTransfer에 저장된 타겟아이디 위치에 append
+</pre>
 <div ondrop="drop(event)" ondragover ="allowDrop(event)"></div>
 <br>
-<img id="drag1" src="../images/popcat_close.png" width="100" draggable="true" ondragstart="drag(event)">
+<img id="drag1" src="../images/popcat_close.png" draggable="true" ondragstart="drag(event)">
+<img id="drag2" src="../images/popcat_open.png" draggable="true" ondragstart="drag(event)">
+<img id="drag3" src="../images/yee2.PNG" draggable="true" ondragstart="drag(event)">
+<img id="drag4" src="../images/yee1.jpg" draggable="true" ondragstart="drag(event)">
 </body>
 </html>
