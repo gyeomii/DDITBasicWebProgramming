@@ -10,10 +10,10 @@
   margin: 10px;
   padding: 10px;
 }
-#result {
+#result1 {
   background-color: white;
   border: dashed orange;
-  height: 400px;
+  height: auto;
 }
 </style>
 </head>
@@ -36,7 +36,48 @@
   </div>
 
 <script>
-  document.querySelector('#attachFile').addEventListener('click',function(){});
+  document.querySelector('#fileRead').addEventListener('click',function(){
+	  let file = document.querySelector('#attachFile').files[0];
+	  //alert("선택된 파일의 타입 조회 필요 >> " + file.type);
+
+	  //문자추출1 - substring()
+// 	  let idx = file.type.indexOf("/");
+// 	  let type = file.type.substring(0, idx);
+	  //문자추출2 - split(sep)
+	  let type = file.type.split("/")[0];
+	  alert(type);
+	  
+	  //분기처리
+	  if(type == "text"){
+		  let reader = new FileReader();
+		  reader.readAsText(file);
+		  reader.onload=function(){
+		    document.querySelector('#result1').innerText = reader.result;
+		  }
+		  let info = `파일명 : ${file.name} \n`;
+		  info += `파일형식 : ${file.type} \n`;
+		  info += `파일크기 : ${file.size} \n`;
+		  info += `수정일자 : ${file.lastModifiedDate.toLocaleDateString()} \n`;
+		  document.querySelector('#result2').value = info;
+	  }else if(type == "image"){
+		  let reader = new FileReader();
+		  reader.readAsDataURL(file);
+		  reader.onload=function(){
+			  let v_img = document.createElement('img');
+			  //v_img.src = reader.result;
+        v_img.setAttribute('src',reader.result);
+			  v_img.style.width = '400px';
+			  document.querySelector('#result1').appendChild(v_img);
+		  }
+		  let info = `파일명 : ${file.name} \n`;
+		  info += `파일형식 : ${file.type} \n`;
+		  info += `파일크기 : ${file.size} \n`;
+		  info += `수정일자 : ${file.lastModifiedDate.toLocaleDateString()} \n`;
+		  document.querySelector('#result2').value = info;
+	  }else{
+		  document.querySelector('#result2').value = `${type}형식의 파일`;
+	  }
+  });
 </script>
 </body>
 </html>
