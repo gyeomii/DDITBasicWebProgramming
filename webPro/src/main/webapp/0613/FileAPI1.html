@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Page Title</title>
+<link rel="stylesheet" href="../css/outStyle.css">
+<title></title>
+</head>
+<script>
+window.onload = function(){
+    let readF = document.getElementById('readFile');
+
+    readF.addEventListener('click', function(){
+        var files = document.getElementById('attachFile').files;
+        var output = "";
+       for (let i = 0; i < files.length; i++) {
+            var file = files[i];
+            output += file.name + "\n";
+            output += file.type + "\n";
+            output += file.size + "bytes\n";
+            output += file.lastModifiedDate + "\n";
+        }
+        document.getElementById('result').innerHTML = output;
+    });
+}
+</script>
+<body>
+    <input type="file" id="attachFile">
+    <button type="button" id="readFile">파일 읽기</button><br>
+    <textarea id = "result" rows="6" cols="60"></textarea>
+</body>
+</html>
