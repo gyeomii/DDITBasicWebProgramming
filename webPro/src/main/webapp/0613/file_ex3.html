@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/outStyle.css">
+<style>
+.bg {
+  background-color: lightgray;
+  margin: 10px;
+  padding: 10px;
+}
+#result {
+  background-color: white;
+  border: dashed orange;
+  height: 400px;
+}
+</style>
+</head>
+<body>
+ 
+  <div class="bg">
+    <input type="file" id="attachFile">
+    <button id="fileRead">읽기</button>
+  </div>
+  
+  <div class="bg">
+    <h2>결과 출력(FileReader객체)</h2>
+    <p>이미지파일의 경우 DataURL형식으로, 아닌 경우 Text형식으로</p>
+    <div id="result1"></div>  
+  </div>
+  
+  <div class="bg">
+    <h2>파일 정보(File객체)</h2>
+    <textarea id="result2" rows="5" cols="50"></textarea>
+  </div>
+
+<script>
+  document.querySelector('#attachFile').addEventListener('click',function(){});
+</script>
+</body>
+</html>
