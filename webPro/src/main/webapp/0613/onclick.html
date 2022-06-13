@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <title>Page Title</title>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+
+    <script>
+        function changeColor(c){
+            document.getElementById("target").style.backgroundColor = c;
+        }
+        window.onload=function(){
+            document.getElementsByTagName('input')[0].onclick = function(){
+                //target을 파랑색으로
+                //console.log(this.getAttribute('value'));
+                let a = this.getAttribute('value');
+                document.querySelector('#target').style.backgroundColor = a;
+            }
+
+            document.getElementsByTagName('input')[1]
+    </script>
+</head>
+<body id = "target">
+    <form method = "post">
+        <!-- <input type="radio" name="C1" value="v1" onclick="changeColor('lightblue')">파랑색
+        <input type="radio" name="C1" value="v2" onclick="changeColor('lightgreen')">녹색 -->
+        <input type="radio" name="C1" value="v1" onclick="changeColor('lightblue')">파랑색
+        <input type="radio" name="C1" value="v2" onclick="changeColor('lightgreen')">녹색
+    </form>
+
+</body>
+</html>
