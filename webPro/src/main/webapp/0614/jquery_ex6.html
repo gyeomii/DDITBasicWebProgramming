@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Page Title</title>
+<link rel="stylesheet" href="../css/outStyle.css">
+<script src="../js/jquery-3.6.0.min.js"></script>
+<title></title>
+</head>
+<body>
+    <h2>
+        문단 안에 <a>링크</a> 태그가 있다
+        두번째 <span><a>링크</a></span> 는 손자이다.
+    </h2>
+</body>
+<script>
+    //h2태그
+    $('h2').css('border', 'solid red');
+    //h2태그의 자식 a 태그
+    $('h2>a').css('border', 'solid blue');
+    //h2태그의 후손 a 태그
+    $('h2 a').css('backgroundColor', 'yellow');
+    //h2태그의 손자 a 태그
+    $('h2 a').css('color', 'red');
+</script>
+</html>
