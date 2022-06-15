@@ -7,7 +7,23 @@
 <script src="../js/jquery-3.6.0.min.js"></script>
 <script>
 $(function(){
-    $('li:first, li:last').css('background','yellow');
+    //$('li:first, li:last').css('background','yellow');
+    $('li').first().css('background','yellow');
+
+    $('li:not(.not)').css('color','blue');
+
+    $('li:even').css('border','2px solid green');
+    $('li:odd').css('border','2px solid red');
+
+    //$('li:eq(2)').css('color','red')
+    $('li').eq(2).css('color','red')
+
+    //$('li:lt(3)').css('fontSize','1.5em')
+    $('li').slice(0,3).css('fontSize','1.5em')
+    
+    //$('li:gt(2)').css('fontStyle','italic')
+    $('li').slice(3).css('fontStyle','italic')
+
 });
 </script>
 <title></title>
@@ -15,13 +31,21 @@ $(function(){
 <body>
 <pre>
     기본필터 -> :first, :last, :eq(idx), :gt(idx), :lt(idx), :even, :odd
+    :first - 선택요소 중 첫번째 요소 , first()로 대체
+    :last - 선택요소 중 마지막 요소, last()로 대체
+    :not(selector) - 괄호의 selector가 일치되는 모든 요소를 제외
+    :even - 선택 요소 중 짝수 요소
+    :odd - 선택 요소 중 홀수 요소
+    :eq(idx) - 선택요소 중 주어진 index에 잂치하는 index를 갖는 요소, eq(idx)로 대체
+    :gt(idx) - greater than - idx보다 큰 idx를 갖는 요소, slice(idx)로 대체 
+    :lt(idx) - less than - idx보다 작은 idx를 갖는 요소, slice(idx)로 대체              
 </pre>
     <div id="box1">
         <ul>
             <li>one</li>
-            <li>two</li>
+            <li class="not">two</li>
             <li>three</li>
-            <li>four</li>
+            <li class="not">four</li>
             <li>five</li>
         </ul>
     </div>
