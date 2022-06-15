@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Insert title here</title>
+  <link rel="stylesheet" href="../css/outStyle.css">
+  <script src="../js/jquery-3.6.0.min.js"></script>
+</head>
+
+<body>
+  <div>
+    <table border="1">
+      <tr>
+        <td>one</td>
+        <td>one</td>
+        <td>one</td>
+        <td>one</td>
+        <td>one</td>
+        <td>one</td>
+        <td>one</td>
+        <td>one</td>
+      </tr>
+      <tr>
+        <td>two</td>
+        <td>two</td>
+        <td>two</td>
+        <td>two</td>
+        <td>two</td>
+        <td>two</td>
+        <td>two</td>
+        <td>two</td>
+      </tr>
+      <tr>
+        <td>three</td>
+        <td>three</td>
+        <td>three</td>
+        <td>three</td>
+        <td>three</td>
+        <td>three</td>
+        <td>three</td>
+        <td>three</td>
+      </tr>
+      <tr>
+        <td>four</td>
+        <td>four</td>
+        <td>four</td>
+        <td>four</td>
+        <td>four</td>
+        <td>four</td>
+        <td>four</td>
+        <td>four</td>
+      </tr>
+      <tr>
+        <td>five</td>
+        <td>five</td>
+        <td>five</td>
+        <td>five</td>
+        <td>five</td>
+        <td>five</td>
+        <td>five</td>
+        <td>five</td>
+      </tr>
+      <tr>
+        <td>six</td>
+        <td>six</td>
+        <td>six</td>
+        <td>six</td>
+        <td>six</td>
+        <td>six</td>
+        <td>six</td>
+        <td>six</td>
+      </tr>
+      <tr>
+        <td>seven</td>
+        <td>seven</td>
+        <td>seven</td>
+        <td>seven</td>
+        <td>seven</td>
+        <td>seven</td>
+        <td>seven</td>
+        <td>seven</td>
+      </tr>
+    </table>
+    <!-- <table></table> -->
+  </div>
+  <script>
+    //td의 첫째 요소들만 선택
+    $('td:first-child').css('background', 'red');
+    //td의 마지막 요소들만 선택 
+    $('td:last-child').css('background', 'purple');
+    //td의 자식 요소들을 선택
+    $('td:nth-child(2)').css('background', 'orange');
+    $('td:nth-child(3)').css('background', 'yellow');
+    $('td:nth-child(4)').css('background', 'green');
+    $('td:nth-child(5)').css('background', 'blue');
+    $('td:nth-child(6)').css('background', 'navy');
+    //짝수 요소만 선택
+    $('td:nth-child(even)').css('color', 'white');
+    //홀수 요소만 선택
+    $('td:nth-child(odd)').css('fontSize', '1.5em');
+    //3의 배수 + 1 요소만 선택
+    $('td:nth-child(3n+1)').css('fontStyle', 'italic');
+    //tr요소를 선택하여 배경색 지정
+    $('tr:first-child').css('background', 'silver');
+    $('tr:nth-child(2n + 3) td').css('background', 'pink');
+    $('tr:last-child td').css('background', 'lightblue');
+    //유일한 자식만 적용가능 2개이상이면 적용 불가
+    $('table:only-child').css('border','5px double orange')
+
+  </script>
+  <div>
+    <h4>배달음식 인기순위</h4>
+    <ol>
+      <li>치킨</li>
+      <li>피자</li>
+      <li>중식</li>
+      <li>족발</li>
+      <li>분식</li>
+    </ol>
+
+    <h4>치킨 선호 브랜드</h4>
+    <ul>
+      <li>교촌</li>
+      <li>굽네</li>
+      <li>BBQ</li>
+      <li>BHC</li>
+      <li>네네</li>
+    </ul>
+  </div>
+  <script>
+    $('li:first-child').css('border', '2px solid red');
+    $('li:last-child').css('border', '2px solid green');
+
+    $('li').first().css('background', 'pink');
+    $('li').last().css('background', 'blue');
+  </script>
+</body>
+
+</html>
