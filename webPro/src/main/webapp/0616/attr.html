@@ -38,8 +38,14 @@
 		console.log(v_nm);
 		return v_nm;
 	});
-	
-	
+  //속성제거 - removeAttr()
+  $('img').eq(3).removeAttr('title');
+  //여러 속성 설정
+  $('img').eq(3).attr({'src' : '../images/yee2.PNG',
+                       'alt':'yee2',
+                      'title' :'yee2'           
+});
+
 </script>
 </body>
 </html>
