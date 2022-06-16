@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/outStyle.css">
+<style>
+  img{
+    width: 150px;
+    height: 150px;
+  }
+</style>
+<script src="../js/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+  <h4>img요소 src속성의 파일명을 추출하여 title속성으로 지정</h4>
+  <div>
+    <img src="../images/popcat_open.png" alt="">
+    <img src="../images/popcat_close.png" alt="">
+    <img src="../images/yee1.jpg" alt="">
+    <img src="../images/yee2.PNG" alt="">
+  </div>
+  <script>
+	//attribute get -첫번째 항목만 반환
+	console.log($('img').attr('src'));	
+	//attribute set -일괄처리
+	$('img').attr('title','타이틀');
+	
+	//attr() 속성 값 적용시 함수를 사용해서 반환하는 값 설정
+	$('img').attr('title',function(){
+		//함수 내부적으로 this를 통해 순차적인 값을 반환
+		//console.log($(this).attr('src'));
+		let v_src = $(this).attr('src');
+		//이미지 이름 추출 - substring(str,end-1)
+		let str = v_src.lastIndexOf("/") + 1;
+		let end = v_src.lastIndexOf('.');
+		let v_nm = v_src.substring(str,end);
+		console.log(v_nm);
+		return v_nm;
+	});
+	
+	
+</script>
+</body>
+</html>
