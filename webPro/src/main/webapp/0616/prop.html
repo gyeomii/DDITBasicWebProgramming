@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    <link rel="stylesheet" href="../css/outStyle.css">
+    <script src="../js/jquery-3.6.0.min.js"></script>
+</head>
+
+<body>
+    <form>
+        체크박스 : <input type="checkbox" id="chkTest" checked> <br>
+        라디오버튼 : <input type="radio" id="rdoTest"> <br>
+        콤보(select)박스 :
+        <select id="sltTest">
+            <option value="">--</option>
+            <option value="1">하나</option>
+            <option value="2">둘</option>
+            <option value="3">셋</option>
+            <option value="4">넷</option>
+        </select> <br>
+        text필드(readonly) :
+        <input id="txtTest" value="읽기만가능" readonly> <br>
+        button : <input type="button" value="실행" id="runBtn">
+        <input type="button" value="변경" id="changeBtn">
+    </form>
+    <hr>
+    <div id="d1"></div>
+    <hr>
+    <div>
+        <input type="checkbox" id="chkAll">전체선택
+        <input type="checkbox" class="chk">1
+        <input type="checkbox" class="chk">2
+        <input type="checkbox" class="chk">3
+        <input type="checkbox" class="chk">4
+        <input type="checkbox" class="chk">5
+    </div>
+
+    <script>
+        //전체선택을 누르면 모든 체크박스 체크
+        $('#chkAll').on('click', function () {
+            let chk = $(this).prop('checked'); //boolean 값 반환
+            //전체 선택 요소의 상태를 하위에 그대로 전달
+            //선택 요소의 하위요소 선택  - nextAll();
+            //parent() : 부모요소 찾기, find() : 하위요소 찾기
+            //1. : $('.chk').prop('checked',chk);
+            //2. : $(this).nextAll().prop('checked', chk);
+            //3. : $(this).parent().prop('checked',chk); //div
+            /*4. */$(this).parent().find('.chk').prop('checked', chk);//하위 class=chk 찾기
+        });
+
+        //모든 체크박스가 체크되지 않으면 전체선택 체크 해제
+        $('.chk').on('click', function () {
+            let allSize = $('.chk').length;
+            let chkSize = $('.chk:checked').length;
+            if (allSize > chkSize) {
+                $('#chkAll').prop('checked', false);
+            } else {
+                $('#chkAll').prop('checked', true);
+            }
+        });
+         
+        $('#runBtn').on('click', function () {
+            let result = `chkbox: ${$('#chkTest').prop('checked')}<br>`;
+            result += `rdoBtn: ${$('#rdoTest').prop('checked')}<br>`;
+            result += `sltbox: ${$('#sltTest option').eq(2).prop('selected')}<br>`;
+            result += `text: ${$('#txtTest').prop('readonly')}`;
+            $('#d1').html(result);
+        });
+        $('#changeBtn').on('click', function () {
+            //get
+            let chk = $('#chkTest').prop('checked');
+            let rdo = $('#rdoTest').prop('checked');
+            let slt = $('#sltTest option').eq(2).prop('selected');
+            let txt = $('#txtTest').prop('readonly');
+            //set
+            $('#chkTest').prop('checked', !chk);
+            $('#rdoTest').prop('checked', !rdo);
+            $('#sltTest option').eq(2).prop('selected', !slt);
+            $('#txtTest').prop('readonly', !txt);
+        });
+    </script>
+</body>
+
+</html>
