@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Insert title here</title>
+  <link rel="stylesheet" href="../css/outStyle.css">
+  <style>
+    img {
+      width: 150px;
+      height: 120px;
+    }
+
+    div {
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+
+    .pColor {
+      color: red;
+    }
+
+    .pBack {
+      background-color: aquamarine;
+    }
+
+    .pBack1 {
+      background-color: coral;
+    }
+
+    .iBorder {
+      border: 3px solid grey;
+    }
+  </style>
+  <script src="../js/jquery-3.6.0.min.js"></script>
+  <script>
+    $(function () {
+      $('input:button').on('click', function () {
+        //$('p').css('color','red');
+        $('p').addClass('pColor');
+      });
+
+      $('p').on('click', function () {
+        // 		$(this).addClass('pBack');
+
+        // //hasClass를 이용한 add-remove 
+        // if($(this).hasClass('pBack')){
+        // 	//removeClass
+        // 	$(this).removeClass('pBack');
+        // }else{
+        // 	//addClass
+        // 	$(this).addClass('pBack');
+        // }
+        $(this).toggleClass('pBack1');
+      });
+      //비어있는 div에 mouseover, mouseout 이벤트로 bBack적용하기
+      $('div:empty').on('mouseover', function () {
+        $(this).addClass('pBack');
+      });
+      $('div:empty').on('mouseout', function () {
+        $(this).removeClass('pBack');
+      });
+
+      // $('img').on('mouseover',function(){
+      //   $(this).addClass('iBorder');
+      // })
+      // $('img').on('mouseout',function(){
+      //   $(this).removeClass('iBorder');
+      // })
+
+      //hover()
+      //$('img').hover(function () { $(this).addClass('iBorder'); }, function () { $(this).removeClass('iBorder'); })
+
+      $('img').on('click', function () {
+        $(this).toggleClass('border');
+      });
+    });
+  </script>
+</head>
+
+<body>
+  <div>
+    <input type="button" value="확인">
+    <p>Click!!</p>
+    <p>Click!!</p>
+    <p>Click!!</p>
+    <p>Click!!</p>
+    <p>Click!!</p>
+
+    <div></div>
+
+    <img src="../images/popcat_close.png" alt="">
+    <img src="../images/popcat_open.png" alt="">
+    <img src="../images/popcat_close.png" alt="">
+    <img src="../images/popcat_open.png" alt="">
+  </div>
+</body>
+
+</html>

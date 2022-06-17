@@ -5,4 +5,6 @@ pre {
 	border: 3px solid orange;
 	padding: 10px;
 	margin: 10px;
+	font-size: large;
+	font-weight: bold;
 }
