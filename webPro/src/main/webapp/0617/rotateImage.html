@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/outStyle.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="../js/jquery-3.6.0.min.js"></script>
+<style>
+	body{
+		text-align: center;
+	}
+	img{
+		width: 200px;
+		height: 200px;
+	}
+	input{
+		width: 100px;
+		height: 50px;
+	}
+</style>
+</head>
+<body>
+	<pre>
+		Start Rotate 버튼을 누르면 이미지의 순서가 바뀐다.
+		Stop 버튼을 누르면 멈춘다.
+	</pre>
+	<div>
+		<img alt="pic" src="../images/popcat_open.png">
+		<img alt="pic" src="../images/popcat_close.png">
+		<img alt="pic" src="../images/yee2.png">
+		<img alt="pic" src="../images/라온.png">
+		<img alt="pic" src="../images/mew.jpg">
+	</div>
+	<hr>
+	<p>
+		<input type="button" value="Start Rotate">
+		<input type="button" value="Stop">
+	</p>
+<script type="text/javascript">
+let startChecker = false;
+function proxyCall(){
+	if (!startChecker) {
+		rotation();
+	}
+	startChecker = true; //한번만 실행하게하기
+}
+function callEnd() {
+	//clearTimeout(setTimeout객체)실행
+	clearTimeout(time);
+	startChecker = false;
+}
+function rotation() {
+	$('img').first().appendTo('div'); //
+	time = setTimeout(rotation,500); //재귀호출 setTimeout을 더 많이 활용한다고 함 실무에서
+}	
+
+$('[value="Start Rotate"]').on('click',proxyCall);
+$('[value="Stop"]').on('click',callEnd);
+</script>
+</body>
+</html>
