@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Page Title</title>
+<link rel="stylesheet" href="../css/outStyle.css">
+<script src="../js/jquery-3.6.0.min.js"></script>
+<style>
+    #d1{
+        width: 40%;
+        height: 200px;
+        background: green;
+        padding: 40px;
+    }
+</style>
+<title></title>
+</head>
+<body>
+<div id="d1"></div>
+<script>
+$('div').on({
+	mouseenter : function(){
+		$(this).css('background','lightgray');
+	},
+	mouseleave : function(){
+		$(this).css('background','lightblue');
+	},
+	dblclick : function(){
+		$(this).css('background','yellow');
+	}
+});
+
+$('div').on('mousedown',function(){//매개변수 지정하지 않았을 때 event키워드 사용
+	let result = `event의 target : ${event.target} <br>`;
+		result += `event의 type : ${event.type} <br>`;
+		result += `pageX : ${event.pageX} <br>`;
+		result += `pageY : ${event.pageY} <br>`;
+		result += `screenX : ${event.screenX} <br>`;
+		result += `screenX : ${event.screenX} <br>`;
+		//mousedown 이벤트 : 0-left,1-wheel,2-right 정보 얻음
+		result += `event의 button : ${event.button} <br>`;
+	$(this).html(result);
+});
+</script>
+</body>
+</html>

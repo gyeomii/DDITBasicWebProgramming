@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Page Title</title>
+    <link rel="stylesheet" href="../css/outStyle.css">
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <style>
+        img {
+            width: 200px;
+            height: 200px;
+        }
+
+        input {
+            display: none;
+        }
+    </style>
+    <title></title>
+</head>
+
+<body>
+    <pre>
+        이미지 위에 마우스를 올리면 이미지가 바뀝니다
+        이미지에서 마우스가 나가면 원래 이미지로 돌아옵니다
+        이미지를 더블 클릭하면 이미지가 사라집니다
+        이미지가 모두 사라지면 이미지 하단에 버튼이 나타납니다
+    </pre>
+    <img src="../images/popcat_close.png" alt="" src2="../images/popcat_open.png">
+    <img src="../images/home.png" alt="" src2="../images/mail.png">
+    <img src="../images/upload.png" alt="" src2="../images/download.png">
+    <img src="../images/yee1.jpg" alt="" src2="../images/yee2.jpg">
+    <hr>
+    <input type="button" value="show">
+
+    <script>
+        $('img').on(mouseover, function () {
+            let v_src = $(this).attr('src');
+            let v_src2 = $(this).attr('src2');
+            $(this).
+            });
+    </script>
+</body>
+
+</html>
