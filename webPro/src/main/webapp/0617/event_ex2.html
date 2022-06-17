@@ -12,8 +12,11 @@
             height: 200px;
         }
 
-        input {
+        input[type=button] {
             display: none;
+        }
+        div{
+            padding: 20px;;
         }
     </style>
     <title></title>
@@ -26,19 +29,39 @@
         이미지를 더블 클릭하면 이미지가 사라집니다
         이미지가 모두 사라지면 이미지 하단에 버튼이 나타납니다
     </pre>
-    <img src="../images/popcat_close.png" alt="" src2="../images/popcat_open.png">
-    <img src="../images/home.png" alt="" src2="../images/mail.png">
-    <img src="../images/upload.png" alt="" src2="../images/download.png">
-    <img src="../images/yee1.jpg" alt="" src2="../images/yee2.jpg">
     <hr>
-    <input type="button" value="show">
+    <div>
+        <img src="../images/popcat_close.png" alt="" src2="../images/popcat_open.png">
+        <img src="../images/home.png" alt="" src2="../images/mail.png">
+        <img src="../images/upload.png" alt="" src2="../images/download.png">
+        <img src="../images/yee1.jpg" alt="" src2="../images/yee2.png">
+        <input type="button" value="show">
+    </div>
+    <hr>
 
     <script>
-        $('img').on(mouseover, function () {
-            let v_src = $(this).attr('src');
-            let v_src2 = $(this).attr('src2');
-            $(this).
-            });
+        let v_src="";
+        let v_src2="";
+        $('img').on('mouseover', function () {
+            v_src = $(this).attr('src');
+            v_src2 = $(this).attr('src2');
+            $(this).attr('src',v_src2);
+        });
+        $('img').on('mouseout', function () {
+            $(this).attr('src',v_src);
+        });
+        $('img').on('dblclick',function(){
+            $(this).hide();
+            if($('img:visible').length < 1){
+                 $('input:button').show();
+                }
+        });
+        $('input:button').on('click',function(){
+            $('img').show();
+            $(this).hide();
+        })
+
+
     </script>
 </body>
 
