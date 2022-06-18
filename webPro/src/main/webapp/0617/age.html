@@ -52,10 +52,15 @@
 	});
 	$('#link').on('click',function(){
 		let age = prompt("나이를 입력하세요","12");
-		if(age < 15){
-			event.preventDefault();
-		}
-	})
+			if(age >= 15){
+
+			}else if(age < 15){
+				event.preventDefault();
+			}else{
+				alert("나이를 숫자로 입력하세요")
+				event.preventDefault();
+			}
+	});
 </script>
 
 </html>

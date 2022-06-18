@@ -38,7 +38,7 @@
 		<input type="button" value="Stop">
 	</p>
 <script type="text/javascript">
-let startChecker = false;
+let startChecker = false; //실행중 X
 function proxyCall(){
 	if (!startChecker) {
 		rotation();
@@ -47,12 +47,12 @@ function proxyCall(){
 }
 function callEnd() {
 	//clearTimeout(setTimeout객체)실행
-	clearTimeout(time);
+	clearTimeout(startRotation);
 	startChecker = false;
 }
 function rotation() {
 	$('img').first().appendTo('div'); //
-	time = setTimeout(rotation,500); //재귀호출 setTimeout을 더 많이 활용한다고 함 실무에서
+	startRotaion = setTimeout(rotation,500); //재귀호출 setTimeout을 더 많이 활용한다고 함 실무에서
 }	
 
 $('[value="Start Rotate"]').on('click',proxyCall);
