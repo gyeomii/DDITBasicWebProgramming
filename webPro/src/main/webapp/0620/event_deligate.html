@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Page Title</title>
+<link rel="stylesheet" href="../css/outStyle.css">
+<script src="../js/jquery-3.6.0.min.js"></script>
+<title></title>
+</head>
+<body>
+    <pre>
+        이벤트 등록 형식 : deligate(위임, 대리)
+        부모의 이벤트를 물려받아 이벤트를 연결하는 방식
+
+        *동적으로 생성된 요소는 부모가 될 수 없다
+    </pre>
+    <div class="box">
+        <input type='button' class="btn" value="버튼">
+        <input type='button' id="clear" value="해제">
+     </div>
+    <script>
+        //delegate방식 : $(parentSel).deligate('childSel','event',fn)
+        //               $('.box').on('event', 'childSel', fn);
+        //최상위 부모인 document로 할수 있다
+        //$(document).on(~~)
+        $('.box').on('click','.btn', function(){
+            //새버튼 생성 - 동적요소
+	        $('<input>',{
+                'type' : 'button',
+		        'class' : 'btn',
+		        'value' : '새버튼'
+    	    }).appendTo('.box');
+        });
+        $("#clear").on('click',function(){
+            //$(document).off(~~)
+	        $('.box').off('click');
+        });
+    </script>
+</body>
+</html>

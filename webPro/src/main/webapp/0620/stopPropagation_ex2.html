@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/outStyle.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="../js/jquery-3.6.0.min.js"></script>
+<style type="text/css">
+span{
+ padding :10px;
+ background :yellow;
+}
+div{
+ background : gray;
+ padding : 20px;
+}
+</style>
+</head>
+<body>
+<div>
+	<span>
+		<button>클릭하세요
+		
+		
+		</button>
+	</span>
+</div>
+<br> <hr color="red"> <br>
+<script type="text/javascript">
+let arr = [];
+let randomColor = function() {
+	for(i=0; i<3; i++){
+		arr[i] = parseInt(Math.random()*256).toString(16);
+	}
+	return `#${arr[0]}${arr[1]}${arr[2]}`;
+};
+
+$('button').on('click',function(){
+	$(this).css('border','solid 1px red').css('background',randomColor);
+	event.stopPropagation();
+});
+$('span').on('click',function(){
+	$(this).css('border','solid green 10px');
+	event.stopPropagation();
+});
+$('div').on('click',function(){
+	$(this).css('border','solid blue 5px');
+	$(this).append('hello');
+});
+
+
+
+</script>
+</body>
+</html>
