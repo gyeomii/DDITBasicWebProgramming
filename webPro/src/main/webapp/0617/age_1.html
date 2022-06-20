@@ -47,6 +47,7 @@
 	$('[type="submit"]').on('click', function () {
 		let age = $('#inputAge').val();
 		if (age < 15) {
+			alert("이동할 수 없습니다.");
 			event.preventDefault();
 		}
 	});
@@ -57,7 +58,7 @@
 			}else if(age < 15){
 				event.preventDefault();
 			}else{
-				alert("나이를 숫자로 입력하세요")
+				alert("나이를 숫자로 입력하세요");
 				event.preventDefault();
 			}
 	});

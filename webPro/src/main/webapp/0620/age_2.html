@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<link rel="stylesheet" href="../css/outStyle.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script src="../js/jquery-3.6.0.min.js"></script>
+	<style>
+		body{
+			text-align: center;
+		}
+		#title{
+			background-color: coral;
+		}
+		#link{
+			background-color: aquamarine;
+			font-size: 1.5em;
+		}
+		input{
+			margin: 10px;
+		}
+	</style>
+</head>
+<body>
+	<pre>
+		&ltform태그 전송>
+		이름과 나이를 입력하고 '전송'버튼을 누르면
+		입력받은 데이터를 homework.jsp파일로 전송한다.
+		나이가 15세 미만이면 전송하지 않는다.
+
+		&lt링크 이동>
+		링크를 클릭하면 프롬프트로 나이를 입력받는다.
+		나이가 15세 미만이면 링크로 이동하지 않는다.
+	</pre>
+	<p id="title">form태그 전송</p>
+	<form method="post" action="../0617/homework.jsp">
+		이름 : <input id="inputName" name="name"> <br>
+		나이 : <input id="inputAge" name="age"> <br>
+		<input type="submit" value="전송">
+	</form>
+	<p id="title">링크 이동</p>
+	<p id="link"><a id="link" href="https://github.com/gyeomii">github로 이동</a></p>
+</body>
+<script>
+	$('[type="submit"]').on('click', function () {
+		let age = $('#inputAge').val();
+		if (age < 15) {
+			event.preventDefault();
+		}
+	});
+	$('#link').on('click',function(){
+		// 숫자가 아닌 정보를 입력 받았을때 : isNaN() : not a number
+		let age = prompt("나이를 입력하세요","12");
+			if(isNaN(age)){ // 문자를 입력받았을 때 true
+			//	return; // null을 반환
+				alert("나이를 숫자로 입력하세요")
+				return false;
+			}else if(age < 15){
+				event.preventDefault();
+				alert("이동할 수 없습니다.")
+			}
+	});
+</script>
+
+</html>
