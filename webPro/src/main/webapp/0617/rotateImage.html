@@ -26,8 +26,13 @@
 </head>
 <body>
 	<pre>
+		&lt proxy pattern>
 		Start Rotate 버튼을 누르면 이미지의 순서가 바뀐다.
 		Stop 버튼을 누르면 멈춘다.
+
+		&lt proxy pattern X>
+		start 버튼을 누르면 이미지가 회전
+		여러번 누르면 빨라짐
 	</pre>
 	<div>
 		<img alt="pic" src="../images/popcat_open.png">
@@ -50,6 +55,7 @@
 	<button type="button" id="stop">Stop</button>
 <script type="text/javascript">
 let startChecker = false; //실행중 X
+let start
 function proxyCall(){
 	if (!startChecker) {
 		rotation();
@@ -63,11 +69,12 @@ function callEnd() {
 }
 function rotation() {
 	$('[alt=pic]').first().appendTo('div'); //
-	startRotaion = setTimeout(rotation,500); //재귀호출 setTimeout을 더 많이 활용한다고 함 실무에서
+	startRotation = setTimeout(rotation,500); //재귀호출 setTimeout을 더 많이 활용한다고 함 실무에서
 }
 
 $('input[value="Start Rotate"]').on('click',proxyCall);
 $('input[value="Stop"]').on('click',callEnd);
+//===================================================================
 let angle=0;
 let bingbing;
 $('button[id=start]').on('click',function bingbingbing(){
@@ -75,6 +82,10 @@ $('button[id=start]').on('click',function bingbingbing(){
 	$("#bing").css({'transform': 'rotate('+angle+'deg)'});
 	bingbing =  setTimeout(bingbingbing,10);
 })
+$('button[id=stop]').on('click',function (){
+	clearTimeout(bingbing);
+})
+
 </script>
 </body>
 </html>
