@@ -5,61 +5,103 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="../css/outStyle.css">
 <script src="../js/jquery-3.6.0.min.js"></script>
+<style>
+	table{
+		border: solid;
+	}
+	th, td{
+		border: solid;
+	}
+</style>
 </head>
 <body>
-  <h4>form을 이용한 데이터 전송</h4>
-  <form>
-    <input name="info">
-    <input type="button" value="확인">
-  </form>
+	<h4>form을 이용한 데이터 전송</h4>
+	<form>
+		<input name="info"> <input type="button" value="확인">
+	</form>
 
-  <h4>ajax를 이용한 데이터 전송</h4>
-  <button type="button">확인</button>
-  <div></div>
-<script>
-//jsp를 통한 페이지 전환
-$('input:button').on('click',function(){
-	$('form').attr('action','oldTest.jsp').submit();
-});
-//ajax를 사용하면 기존 페이지에 정보를 업데이트하고 출력할 수 있다.
-$('button:button').on('click',function(){
-	// 서버에 요청하기위해 필요한 객체 생성
-	// XMLHttpReauest객체 : 
-	// 서버와 상호작용하기 위해 사용, 새로고침 없이 데이터를 받아오며 주로 ajax에 사용된다.
-	let request = new XMLHttpRequest();
-	
-	//요청 정보 설정 - open(method, url, async); async >> true(defalut) : 비동기
-	request.open('get','newTest.jsp',true);
-  //요청 정보 서버로 전달
-  request.send();
+	<h4>ajax를 이용한 데이터 전송</h4>
+	<button type="button">확인</button>
+	<div></div>
+	<script>
+		//jsp를 통한 페이지 전환
+		$('input:button').on('click', function() {
+			$('form').attr('action', 'oldTest.jsp').submit();
+		});
+		//ajax를 사용하면 기존 페이지에 정보를 업데이트하고 출력할 수 있다.
+		$('button:button').on('click', function() {
+			// 서버에 요청하기위해 필요한 객체 생성
+			// XMLHttpReauest객체 : 
+			// 서버와 상호작용하기 위해 사용, 새로고침 없이 데이터를 받아오며 주로 ajax에 사용된다.
+			let request = new XMLHttpRequest();
 
-  //서버로부터 응답데이터 받기
-  /*
-  	- onreadystatechange : readyState값이 변할때마다 자동으로 호출되는 함수 설정
-  						 (서버로부터 총 5번 호출됨)
-  		>> 위 이벤트 속성을 사용해 서버에 요청한 데이터의 존재 및 응답 도착의 순간을 특정한다.
-  	- readyState : send()시 서버에서 요청페이지 상태변화를 코드로 전송해 줌
-  		>> 0:send전 준비, 1:로딩중, 2:로딩완료, 3:서버처리중, 4: 서버처리 끝
-  		
-  	- status : 결과에 대한 상태코드
-  		>> 200:결과성공, 403:요청오류 404:요청페이지 없음 500:서버에러
-  */
-  request.onreadystatechange = function(){
-    //console.log(this.readyState);
-    //console.log(this.status);
-    if(this.readyState == 4 && this.status == 200){
-      //결과를 출력할 수 있음
-     // console.log(this.responseText); //JSON Object Data
-     let a = JSON.parse(this.responseText);//JSON -> Object 변환
-     //key로 접근하여 데이터 표현
-     let result = `이름 : ${a.name} <br>`;
-         result += `주소 : ${a.addr} <br>`;
-         result += `전화 : ${a.tel} <br>`;
-      $('div').html(result);
-    }
-  };
-  
-});
-</script>
+			//요청 정보 설정 - open(method, url, async); async >> true(defalut) : 비동기
+			request.open('get', 'newTest.jsp', true);
+			//요청 정보 서버로 전달
+			request.send();
+
+			//서버로부터 응답데이터 받기
+			/*
+				- onreadystatechange : readyState값이 변할때마다 자동으로 호출되는 함수 설정
+									 (서버로부터 총 5번 호출됨)
+					>> 위 이벤트 속성을 사용해 서버에 요청한 데이터의 존재 및 응답 도착의 순간을 특정한다.
+				- readyState : send()시 서버에서 요청페이지 상태변화를 코드로 전송해 줌
+					>> 0:send전 준비, 1:로딩중, 2:로딩완료, 3:서버처리중, 4: 서버처리 끝
+					
+				- status : 결과에 대한 상태코드
+					>> 200:결과성공, 403:요청오류 404:요청페이지 없음 500:서버에러
+			 */
+			request.onreadystatechange = function() {
+				//console.log(this.readyState);
+				//console.log(this.status);
+				if (this.readyState == 4 && this.status == 200) {
+					//결과를 출력할 수 있음
+					// console.log(this.responseText); //JSON Object Data
+					//JSON형식의 데이터만 파싱 가능
+					let a = JSON.parse(this.responseText);//JSON -> Object 변환
+					console.log(a);
+					/* 
+					// Object : key로 접근하여 데이터 표현
+					let result = `이름 : ${a.name} <br>`;
+					    result += `주소 : ${a.addr} <br>`;
+					    result += `전화 : ${a.tel} <br>`;
+					 $('div').html(result);
+					 */
+
+					/*
+					// array : each()메소드
+					// selector : $(selector).each(fn)
+					// object   : $.each(obj, fn)
+					let result = "<ul>";
+					$.each(a, function() {
+						result += "<li>" + this + "</li>";
+					//  result += "<li>" + a[i] + "</li>";
+					//	result += "<li>" + v + "</li>";
+					});
+					result += "</ul>";
+					$('div').html(result);
+					 */
+					 
+				     //JSON Object Array
+				     let result = "<table>";
+				    	 result += "<tr>";
+				    	 result += "<th>이름</th>";
+				    	 result += "<th>주소</th>";
+				    	 result += "<th>번호</th>";
+				    	 result += "</tr>";
+				     $.each(a,function(){
+				    	 result += "<tr>";
+				    	 result += "<td>" + this.name + "</td>";
+				    	 result += "<td>" + this.addr + "</td>";
+				    	 result += "<td>" + this.tel + "</td>";
+				    	 result += "</tr>";
+				     });
+				     result += "</table>";
+				     $('div').html(result);
+				}
+			};
+
+		});
+	</script>
 </body>
 </html>
