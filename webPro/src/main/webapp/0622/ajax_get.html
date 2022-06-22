@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/outStyle.css">
+<script src="../js/jquery-3.6.0.min.js"></script>
+<style>
+	table{
+		border: solid;
+	}
+	th, td{
+	width: auto;
+	height: 50px;
+		border: solid;
+	}
+</style>
+</head>
+<body>
+	<h4>form을 이용한 데이터 전송</h4>
+	<form>
+		<input name="info"> <input type="button" value="확인">
+	</form>
+
+	<h4>ajax를 이용한 데이터 전송</h4>
+	<button type="button">확인</button>
+	<div></div>
+	<script>
+		$('input:button').on('click', function() {
+			$('form').attr('action', 'jsonObjArr.jsp').submit();
+		});
+
+		$('button:button').on('click', function() {
+			let request = new XMLHttpRequest();
+
+			request.open('get', 'jsonObjArr.jsp', true);
+
+			request.send();
+			request.onreadystatechange = function() {
+				if (this.readyState == 4 && this.status == 200) {
+
+					let a = JSON.parse(this.responseText);//JSON -> Object 변환
+					console.log(a);
+
+				     let result = "<table>";
+				    	 result += "<tr>";
+				    	 result += "<th>이름</th>";
+				    	 result += "<th>주소</th>";
+				    	 result += "<th>번호</th>";
+				    	 result += "</tr>";
+				     $.each(a,function(){
+				    	 result += "<tr>";
+				    	 result += "<td>" + this.name + "</td>";
+				    	 result += "<td>" + this.addr + "</td>";
+				    	 result += "<td>" + this.tel + "</td>";
+				    	 result += "</tr>";
+				     });
+				     result += "</table>";
+				     $('div').html(result);
+				}
+			};
+
+		});
+	</script>
+</body>
+</html>
