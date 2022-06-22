@@ -10,26 +10,18 @@
 		border: solid;
 	}
 	th, td{
-	width: auto;
-	height: 50px;
+		padding:5px;
+		width: auto;
+		height: 50px;
 		border: solid;
 	}
 </style>
 </head>
 <body>
-	<h4>form을 이용한 데이터 전송</h4>
-	<form>
-		<input name="info"> <input type="button" value="확인">
-	</form>
-
 	<h4>ajax를 이용한 데이터 전송</h4>
 	<button type="button">확인</button>
 	<div></div>
 	<script>
-		$('input:button').on('click', function() {
-			$('form').attr('action', 'jsonObjArr.jsp').submit();
-		});
-
 		$('button:button').on('click', function() {
 			let request = new XMLHttpRequest();
 
@@ -39,22 +31,24 @@
 			request.onreadystatechange = function() {
 				if (this.readyState == 4 && this.status == 200) {
 
-					let a = JSON.parse(this.responseText);//JSON -> Object 변환
-					console.log(a);
-
-				     let result = "<table>";
-				    	 result += "<tr>";
-				    	 result += "<th>이름</th>";
-				    	 result += "<th>주소</th>";
-				    	 result += "<th>번호</th>";
-				    	 result += "</tr>";
-				     $.each(a,function(){
-				    	 result += "<tr>";
-				    	 result += "<td>" + this.name + "</td>";
-				    	 result += "<td>" + this.addr + "</td>";
-				    	 result += "<td>" + this.tel + "</td>";
-				    	 result += "</tr>";
-				     });
+					let data = JSON.parse(this.responseText);//JSON -> Object 변환
+					// 결과를 테이블 형태로 작성
+					let result = "<table border=1>";
+					
+					
+					//객체의 key, value, key와 value를 배열형태로 받아오기
+					//Object.keys(), values(), entries()
+					let objArr = Object.values(data);
+					let keyArr = Object.keys(objArr[2]);
+					
+					
+					result += `<tr><th>${keyArr[0]}</th><th>${keyArr[1]}</th><th>${keyArr[2]}</th></tr>`;
+					//반복 - each()
+					$.each(data,function(i,v){
+					  result += "<tr><td>" + v.name + "</td>";
+					  result += "<td>" + this.addr  + "</td>";
+					  result += `<td> ${data[i].tel} </td></tr>`;
+					});
 				     result += "</table>";
 				     $('div').html(result);
 				}
