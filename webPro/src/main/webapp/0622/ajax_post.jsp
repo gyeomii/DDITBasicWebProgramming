@@ -15,11 +15,15 @@
 		// json object data 는 스크립트릿 외부에 존재해야한다.
 		//{"key" : "value"}
 %>
-		{"msg" : "Login Success"}
+  	{
+		"msg" : "Login Success","cd" : "ok"
+  	}
 <%	
 	} else {
 %>		
-		{"msg" : "Login Failed"}	
+  	{
+		"msg" : "Login Failed","cd" : "NOT OK"
+	}
 <%
 	} // 정보 불일치
 %>

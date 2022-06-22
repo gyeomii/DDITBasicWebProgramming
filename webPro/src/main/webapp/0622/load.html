@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/outStyle.css">
+<script src="../js/jquery-3.6.0.min.js"></script>
+<style>
+  #d1 {
+    border: solid orange;
+    margin: 10px;
+  }
+  </style>
+</head>
+<body>
+<pre>
+	load() : 서버로부터 응답받은 데이터를 지정된 요소에 배치.
+  		     간소화된 비동기 호출 메소드로, 코드를 간결하게 함.
+  		     same-origin-policy적용으로 다른 url주소나 sub domain에서 정보를 불러올 수 없다.
+</pre>
+  <button>버튼</button>
+  <div id="d1"></div>
+  <div id="d2"></div>
+<script>
+let a = "apple";
+let b = "pie";
+$('button').on('click',function(){
+	//$(selector).load(url, data, callback_fn)
+	$('#d1').load('rotateImage.jsp',
+				  {"str1" : a, "str2" : b},
+				  //response, status, xhr
+				  function(resp,stts,xhr){
+					$('#d2').html(resp);
+					alert("xhr속성으로 상태확인 : " + xhr.statusText);
+	});
+});
+
+
+</script>
+</body>
+</html>

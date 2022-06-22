@@ -1,3 +1,9 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%
+  String str1 = request.getParameter("str1");
+  String str2 = request.getParameter("str2");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,6 +31,7 @@
 </style>
 </head>
 <body>
+<%=str1 + "-" + str2 %>
 	<pre>
 		&lt proxy pattern>
 		Start Rotate 버튼을 누르면 이미지의 순서가 바뀐다.
@@ -32,7 +39,7 @@
 
 		&lt proxy pattern X>
 		start 버튼을 누르면 이미지가 회전
-		여러번 누르면 빨라짐
+		여러번 누르면 빨라짐
 	</pre>
 	<div id="target">
 		<img alt="pic" src="../images/popcat_open.png">
@@ -54,22 +61,22 @@
 	<button type="button" id="start">Start Rotate</button>
 	<button type="button" id="stop">Stop</button>
 <script type="text/javascript">
-let startChecker = false; //실행중 X
+let startChecker = false; //ì¤íì¤ X
 let start
 function proxyCall(){
 	if (!startChecker) {
 		rotation();
 	}
-	startChecker = true; //한번만 실행하게하기
+	startChecker = true; //íë²ë§ ì¤ííê²íê¸°
 }
 function callEnd() {
-	//clearTimeout(setTimeout객체)실행
+	//clearTimeout(setTimeoutê°ì²´)ì¤í
 	clearTimeout(startRotation);
 	startChecker = false;
 }
 function rotation() {
 	$('[alt=pic]').first().appendTo('#target'); //
-	startRotation = setTimeout(rotation,500); //재귀호출 setTimeout을 더 많이 활용한다고 함 실무에서
+	startRotation = setTimeout(rotation,500); //ì¬ê·í¸ì¶ setTimeoutì ë ë§ì´ íì©íë¤ê³  í¨ ì¤ë¬´ìì
 }
 
 $('input[value="Start Rotate"]').on('click',proxyCall);
