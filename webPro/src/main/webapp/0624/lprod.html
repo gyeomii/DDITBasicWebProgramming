@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/outStyle.css">
+<script src="../js/jquery-3.6.0.min.js"></script>
+<style>
+	table{
+		text-align: center;
+	}
+</style>
+</head>
+<body>
+  <input type="button" id="type_json" value="타입json">
+  <input type="button" id="type_html" value="타입html">
+  <div></div>
+<script>
+$('#type_json').on('click',function(){
+	$.ajax({
+		url : 'lprod.jsp',	//jsp - mvc1패턴...
+// 		type : 'get',
+		success:function(data){
+			let result = "<table border='1'>";
+	    	 result += "<tr>";
+	    	 result += "<th>lprod_id</th>";
+	    	 result += "<th>lprod_gu</th>";
+	    	 result += "<th>lprod_nm</th>";
+	    	 result += "</tr>";
+	    	 
+	     $.each(data, (i,v)=>{ //화살표함수 (this 사용 못함)
+	    	 result += "<tr>";
+	    	 result += `<td>${data[i].lprod_id}</td>`;
+	    	 result += `<td>${v.lprod_gu}</td>`;
+	    	 result += `<td>${data[i].lprod_nm}</td>`;
+	    	 result += "</tr>";
+	     });
+/* 	     $.each(data, function(){
+	    	 result += "<tr>";
+	    	 result += "<td>" + this.lprod_id + "</td>";
+	    	 result += "<td>" + this.lprod_gu + "</td>";
+	    	 result += "<td>" + this.lprod_nm + "</td>";
+	    	 result += "</tr>";
+	     }); */
+	     result += "</table>";
+	     $('div').html(result);
+		},
+		error:function(xhr){
+			alert("상태 : " + xhr.status);
+		},
+// 		complete
+		dataType: 'json'		
+	});
+});
+
+$('#type_html').on('click',function(){
+	$.ajax({
+		url : 'lprod2.jsp',	//jsp - mvc1패턴...
+// 		type : 'get',
+		success:function(data){
+	     $('div').html(data);
+		},
+		error:function(xhr){
+			alert("상태 : " + xhr.status);
+		},
+// 		complete
+		dataType: 'html'		
+	});
+});
+</script>
+</body>
+</html>

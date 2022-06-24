@@ -6,12 +6,13 @@
 <link rel="stylesheet" href="../css/outStyle.css">
 <script src="../js/jquery-3.6.0.min.js"></script>
 <style>
-	table{
-		border: solid;
-	}
-	th, td{
-		border: solid;
-	}
+table {
+	border: solid;
+}
+
+th, td {
+	border: solid;
+}
 </style>
 </head>
 <body>
@@ -81,23 +82,23 @@
 					result += "</ul>";
 					$('div').html(result);
 					 */
-					 
-				     //JSON Object Array
-				     let result = "<table>";
-				    	 result += "<tr>";
-				    	 result += "<th>이름</th>";
-				    	 result += "<th>주소</th>";
-				    	 result += "<th>번호</th>";
-				    	 result += "</tr>";
-				     $.each(a,function(){
-				    	 result += "<tr>";
-				    	 result += "<td>" + this.name + "</td>";
-				    	 result += "<td>" + this.addr + "</td>";
-				    	 result += "<td>" + this.tel + "</td>";
-				    	 result += "</tr>";
-				     });
-				     result += "</table>";
-				     $('div').html(result);
+
+					//JSON Object Array
+					let result = "<table>";
+					result += "<tr>";
+					result += "<th>이름</th>";
+					result += "<th>주소</th>";
+					result += "<th>번호</th>";
+					result += "</tr>";
+					$.each(a, function() {
+						result += "<tr>";
+						result += "<td>" + this.name + "</td>";
+						result += "<td>" + this.addr + "</td>";
+						result += "<td>" + this.tel + "</td>";
+						result += "</tr>";
+					});
+					result += "</table>";
+					$('div').html(result);
 				}
 			};
 

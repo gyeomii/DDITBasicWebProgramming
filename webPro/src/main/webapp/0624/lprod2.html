@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<link rel="stylesheet" href="../css/outStyle.css">
+	<script src="../js/jquery-3.6.0.min.js"></script>
+	<style>
+		table {
+			text-align: center;
+		}
+
+		div {
+			padding: 20px;
+			background: green;
+		}
+	</style>
+</head>
+
+<body>
+	<input type="button" id="type_json" value="타입json">
+	<input type="button" id="type_html" value="타입html">
+	<div></div>
+	<script>
+		//자바스크립트 형식으로 ajax
+		let v_id = document.getElementById('type_json');
+		v_id.addEventListener('click', function () {
+
+			let req = new XMLHttpRequest();
+
+			//요청
+			//req.open(method, url, async)
+			req.open('get', 'lprod.jsp');
+			req.send();
+			//응답
+			req.onreadystatechange = function () {
+				if (this.readyState == 4 && this.status == 200) {
+					let data = JSON.parse(this.responseText);
+					let result = "<table border=1>";
+					result += "<tr>";
+					result += `<th>id</th>`;
+					result += `<th>gu</th>`;
+					result += `<th>name</th>`;
+					result += "</tr>";
+
+					for (let i = 0; i < data.length; i++) {
+						result += "<tr>";
+						result += `<td>${data[i].lprod_id}</td>`;
+						result += `<td>${data[i].lprod_gu}</td>`;
+						result += `<td>${data[i].lprod_nm}</td>`;
+						result += "</tr>";
+					}
+					result += "</table>";
+					document.querySelector('div').innerHTML = result
+				}
+			}
+		});
+
+		let v_id2 = document.getElementById('type_html');
+		v_id2.addEventListener('click', function () {
+
+			let req = new XMLHttpRequest();
+
+			//요청
+			//req.open(method, url, async)
+			req.open('get', 'lprod2.jsp');
+			req.send();
+			//응답
+			req.onreadystatechange = function () {
+				if (this.readyState == 4 && this.status == 200) {
+					let data = this.responseText;
+					document.querySelector('div').innerHTML = data;
+				}
+			}
+		});
+
+	</script>
+</body>
+
+</html>
