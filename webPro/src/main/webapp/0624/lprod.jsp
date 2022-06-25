@@ -28,11 +28,12 @@ while (rs.next()) {
 	String gu = rs.getString("lprod_gu");
 	String nm = rs.getString("lprod_nm");
 	//json object 생성
-	if (i > 0){
+	if (i > 0) {
 		out.print(",");
 	}
 %>
-{ "lprod_id" : "<%=id%>", "lprod_gu" : "<%=gu%>", "lprod_nm" : "<%=nm%>" }
+{ "lprod_id" : "<%=id%>", "lprod_gu" : "<%=gu%>", "lprod_nm" : "<%=nm%>"
+}
 <%
 i++;
 } //while end
