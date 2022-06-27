@@ -32,8 +32,7 @@ while (rs.next()) {
 		out.print(",");
 	}
 %>
-{ "lprod_id" : "<%=id%>", "lprod_gu" : "<%=gu%>", "lprod_nm" : "<%=nm%>"
-}
+{ "lprod_id" : "<%=id%>", "lprod_gu" : "<%=gu%>", "lprod_nm" : "<%=nm%>" }
 <%
 i++;
 } //while end
