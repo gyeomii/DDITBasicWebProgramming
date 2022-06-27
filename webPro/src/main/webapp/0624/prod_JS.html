@@ -26,9 +26,9 @@
 <script>
 //js로 ajax - lprod
 let lprodSel = document.getElementById('lprod');
-lprodSel.addEventListener('change', function(){
+lprodSel.addEventListener('click', function(){
 	let req = new XMLHttpRequest();
-	req.open('get', 'lprod.jsp');
+	req.open('get', './jsp/lprod_JSON.jsp');
 	req.send();
 	req.onreadystatechange = function(){
 		if(this.readyState == 4 && this.status == 200){
@@ -45,9 +45,9 @@ lprodSel.addEventListener('change', function(){
 
 //js로 ajax - prod
 let prodSel = document.getElementById('prod');
-prodSel.addEventListener('change', function(){
+prodSel.addEventListener('click', function(){ //event 바꿔보기
 	let req = new XMLHttpRequest();
-	req.open('get', 'prod.jsp');
+	req.open('get', './jsp/prod.jsp');
 	req.send();
 	req.onreadystatechange = function(){
 		if(this.readyState == 4 && this.status == 200){
