@@ -15,33 +15,37 @@ Connection conn = DriverManager.getConnection(url, user, password);
 
 //db에 접근해서 sql실행하고 
 Statement stmt = conn.createStatement();
-String sql = "select prod_id, prod_name from prod where prod_lgu ='" + lprodGu + "'";
+String sql = "select prod_id, prod_name from prod where prod_lgu = '" + lprodGu + "'";
 // stmt.executeQuery(sql);
 ResultSet rs = stmt.executeQuery(sql);
 
-if (rs.next()) { //데이터 있음
+if(rs.next()){	//데이터가 있음
 %>
-[
+	{
+		"code" : "ok",
+		"value" : [
 <%
-int i = 0;
-while (rs.next()) {
-	String prodId = rs.getString("prod_id");
-	String prodNm = rs.getString("prod_name");
-	//json object 생성
-	if (i > 0) {
-		out.print(",");
+		int i = 0;
+		while(rs.next()){
+		//index로 쉼표 추가
+			if(i>0) out.print(",");
+%>			
+			{
+				"prodId" : "<%=rs.getString("prod_id") %>",
+				"prodNm" : "<%=rs.getString("prod_name") %>"
+			}
+<% 			
+			i++;
+		}//while end
+%>
+		]
 	}
-%>
-{ "prod_id" : "<%=prodId%>", "prod_name" : "<%=prodNm%>" }
 <%
-i++;
-} //while end
-%>
-]
-<%
-} else { // 데이터 없음
-%>
-{ "code" : "no" }
-<%
-}
+}else{ 			//데이터가 없음
+%>		
+		{
+			"code" : "no"
+		}
+<%	
+}//if end
 %>
