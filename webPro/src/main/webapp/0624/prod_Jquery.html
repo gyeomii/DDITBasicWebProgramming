@@ -24,8 +24,9 @@
 	
 	<div>prod의 상세정보</div>
 <script>
+//jquery로 ajax - lprod
 $.ajax({
-	url : 'lprod.jsp',
+	url : './jsp/lprod_JSON.jsp',
 	success : function(data){
 		//select id영역에 뿌려주기
 		let result = "";
@@ -39,14 +40,11 @@ $.ajax({
 	},
 	dataType : 'json'
 });
-
-//자바스크립트로 ajax - lprod
-
-//제이쿼리로 ajax - prod
+//jquery로 ajax - prod
 $('#lprod').on('change',function(){
 	console.log( $(this).val() ); //요청정보
 	$.ajax({
-		url : 'prod.jsp',
+		url : './jsp/prod.jsp',
 		data : {'lprod_gu' : $(this).val()},
 		success:function(data){
 			let code = ``;

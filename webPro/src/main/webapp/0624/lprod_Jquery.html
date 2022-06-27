@@ -16,9 +16,11 @@
 	<input type="button" id="type_html" value="타입html">
 	<div></div>
 	<script>
+		//jquery형식으로 ajax
+		//json데이터 받아오기
 		$('#type_json').on('click', function () {
 			$.ajax({
-				url: 'lprod.jsp',	//jsp - mvc1패턴...
+				url: './jsp/lprod_JSON.jsp',	//jsp - mvc1패턴...
 				// 		type : 'get',
 				success: function (data) {
 					let result = "<table border='1'>";
@@ -52,10 +54,10 @@
 				dataType: 'json'
 			});
 		});
-
+		//html데이터 받아오기
 		$('#type_html').on('click', function () {
 			$.ajax({
-				url: 'lprod2.jsp',	//jsp - mvc1패턴...
+				url: './jsp/lprod_html.jsp',	//jsp - mvc1패턴...
 				// 		type : 'get',
 				success: function (data) {
 					$('div').html(data);
