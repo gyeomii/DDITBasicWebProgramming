@@ -17,6 +17,7 @@
 
 	<div class="col-md-3">
 		<select class="form-control" id="prod">
+			<option value='0'></option>
 		</select>
 	</div>
 
@@ -26,7 +27,7 @@
 <script>
 //js로 ajax - lprod
 let lprodSel = document.getElementById('lprod');
-lprodSel.addEventListener('click', function(){
+window.onload = function(){
 	let req = new XMLHttpRequest();
 	req.open('get', './jsp/lprod_JSON.jsp');
 	req.send();
@@ -38,14 +39,14 @@ lprodSel.addEventListener('click', function(){
 			for(let i = 0; i <data.length; i++){
 				result += `<option value='${data[i].lprod_gu}'>${data[i].lprod_nm}</option>`;
 			}
-			lprodSel.append(result);
+			lprodSel.innerHTML = result;
 		}
 	}
-});
+};
 
 //js로 ajax - prod
 let prodSel = document.getElementById('prod');
-prodSel.addEventListener('click', function(){ //event 바꿔보기
+lprodSel.addEventListener('change', function(){ //event 바꿔보기
 	let req = new XMLHttpRequest();
 	req.open('get', './jsp/prod.jsp');
 	req.send();
@@ -53,14 +54,15 @@ prodSel.addEventListener('click', function(){ //event 바꿔보기
 		if(this.readyState == 4 && this.status == 200){
 			let data = JSON.parse(this.responseText);
 			let result = ``;
+			
 			if(data.code == "ok"){				
 				for(let i = 0; i < data.length; i++){
-					result += `<option value='${data[i].prodId}'>${data[i].prodNm}</option>`;
+					result += `<option value='${this.prodId}'>${this.prodNm}</option>`;
 				}
 			}else{
-				resut += `<option value='${v.prodId}'>${this.prodNm}</option>`;
+				result += `<option>데이터 없음</option>`;
 			}
-			prodSel.append(result);
+			prodSel.innerHTML = result;
 		}
 	}
 });

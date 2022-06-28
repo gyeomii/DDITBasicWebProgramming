@@ -5,7 +5,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
-String prodId = request.getParameter("prod_id");
+String prodId = request.getParameter("prodId");
 //커넥션 객체 만들고 
 Class.forName("oracle.jdbc.driver.OracleDriver");
 String url = "jdbc:oracle:thin:@localhost:1521:xe";
@@ -20,30 +20,29 @@ String sql = "select * from prod where prod_id = '" + prodId + "'";
 ResultSet rs = stmt.executeQuery(sql);
 
 if(rs.next()){	//데이터가 있음
+	String prodName = rs.getString("prod_name");
+	String prodPrice = rs.getString("prod_price");
+	String prodSize = rs.getString("prod_size");
+	String prodColor = rs.getString("prod_color");
+	String prodOutline = rs.getString("prod_outline");
+	String prodImg = rs.getString("prod_img");
+	if(prodSize == null){prodSize = "";}
+	if(prodColor == null){prodColor = "";}
 %>
-	{
+	    {
 		"code" : "ok",
-		"value" : [
-<%
-		int i = 0;
-		while(rs.next()){
-		//index로 쉼표 추가
-			if(i>0) out.print(",");
-%>			
-			{
-				"prodId" : "<%=rs.getString("prod_id") %>",
-				"prodNm" : "<%=rs.getString("prod_name") %>",
-				"prodDetails" : "<%=rs.getString("column") %>",
-				"prodDetails" : "<%=rs.getString("column") %>",
-				"prodDetails" : "<%=rs.getString("column") %>"
-			}
+		"value" :[
+					{
+						"prodName" : "<%=prodName%>",
+						"prodId" : "<%=prodId%>",
+						"prodPrice" : "<%=prodPrice%>",
+						"prodSize" : "<%=prodSize%>",
+						"prodColor" : "<%=prodColor%>",
+						"prodOutline" : "<%=prodOutline%>"
+				  	}
+				  ]
+		}
 <% 			
-			i++;
-		}//while end
-%>
-		]
-	}
-<%
 }else{ 			//데이터가 없음
 %>		
 		{
