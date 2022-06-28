@@ -11,6 +11,9 @@
 	#details{
 		font-size: 1.5em;
 	}
+	table{
+		text-align: center;
+	}
 </style>
 </head>
 <body>
@@ -39,7 +42,9 @@ $.ajax({
 		$.each(data, function(i){
 			result += `<option value='${data[i].lprod_gu}'>${data[i].lprod_nm}</option>`;
 		});
-		$('#lprod').append(result);
+		$('#lprod').html(result);
+		//trigger : 요소에 적용된 이벤트의 핸들러를 강제로 실행시킴
+		$('#lprod').trigger('change');
 	},
 	error : function(xhr){
 		alert(xhr.status);
@@ -58,10 +63,19 @@ $('#lprod').on('change',function(){
 			  $.each(data.value, function(i,v){
 				code += `<option value='${v.prodId}'>${this.prodNm}</option>`;
 			  });
-			  $('#prod').append(code);	
+			  $('#prod').html(code);
+			  //trigger 지정
+			  $('#prod').trigger('change');
 			}else{	//데이터 없을 때
 			  code += `<option value='0'>데이터 없음</option>`;
-			  $('#prod').append(code);	
+			  $('#prod').html(code);	
+			  $('#result').empty();
+			  //이미지를 대체로 삽입
+			  $('#details').append($('<img>',{
+				  'src' : '../images/popcat_open.png',
+				  'alt' : 'image',
+// 				  'width' : 400,
+			  }));
 			}
 		},
 		error:function(xhr){
@@ -70,37 +84,44 @@ $('#lprod').on('change',function(){
 		dataType: 'json'
 	});
 });
+
 //jquery로 ajax - prod detail
 $('#prod').on('change',function(){
 	$.ajax({
 		url : './jsp/prodDetails.jsp',
 		data : {'prodId' : $(this).val()},
 		success : function(data){
-			let rst = ``;
+			let rst = `<table border='1px' class='table table-striped'>`;
 			if(data.code == "ok"){
-				$.each(data.value, function(i,v){
-					rst += `<div class='prodDetails'>`;
-					rst += `[상세정보]<br/>`;
-					rst += `상품명 : ${this.prodName}<br/>`;
-					rst += `상품 코드 : ${v.prodId}<br/>`;
-					rst += `상품 가격 : ${v.prodPrice}<br/>`;
-					rst += `상품 사이즈 : ${v.prodSize}<br/>`;
-					rst += `상품 색상 : ${v.prodColor}<br/>`;
-					rst += `상품 설명 : ${v.prodOutline}<br/>`;
-					rst += `</div>`;
+				$.each(data.value, function(i,v){ //object - i=key, v=value
+					rst += `<tr><th>상품명</th><td>${this.prodName}</td><tr>`;
+					rst += `<tr><th>상품 코드</th><td>${v.prodId}</td><tr>`;
+					rst += `<tr><th>상품 가격</th><td>${v.prodPrice}</td><tr>`;
+					rst += `<tr><th>상품 사이즈</th><td>${v.prodSize}</td><tr>`;
+					rst += `<tr><th>상품 색상</th><td>${v.prodColor}</td><tr>`;
+					rst += `<tr><th>상품 설명</th><td>${v.prodOutline}</td><tr>`;
 				});
+/* 				//상세정보 출력 - 반복문
+				let idx = 1;
+				let size = Object.keys(data.value).length;	//데이터의 총길이
+				$.each(data.value, function(i,v){	//object - i=key, v=value
+				  if(idx<size){
+				    rst += `<tr><th>${Object.keys(data.value)[idx]}</th>`
+				    rst += `<td>${Object.values(data.value)[idx]}</td></tr>`;
+				  }
+				  idx++;
+				}); */
 			}else{
-				rst += `<div>다른 상품을 선택해주세요</div>`;
+				$('#details').empty();
 			}
-			$('#details').append(rst);
+			rst += `</table>`;
+			$('#details').html(rst);
 		},
 		error : function(xhr){
 			alert(xhr.status);
 		},
 		dataType : 'json'
 	});
-	$('#prod').empty();
-	$('#details').empty();
 });
 </script>
 </body>

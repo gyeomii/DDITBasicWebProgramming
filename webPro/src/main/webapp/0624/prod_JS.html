@@ -43,26 +43,29 @@ window.onload = function(){
 		}
 	}
 };
-
+//
 //js로 ajax - prod
 let prodSel = document.getElementById('prod');
 lprodSel.addEventListener('change', function(){ //event 바꿔보기
+	let lprodGu = this.value;
 	let req = new XMLHttpRequest();
-	req.open('get', './jsp/prod.jsp');
+	req.open('get', './jsp/prod.jsp?lprod_gu='+lprodGu);
 	req.send();
 	req.onreadystatechange = function(){
 		if(this.readyState == 4 && this.status == 200){
 			let data = JSON.parse(this.responseText);
-			let result = ``;
-			
-			if(data.code == "ok"){				
-				for(let i = 0; i < data.length; i++){
-					result += `<option value='${this.prodId}'>${this.prodNm}</option>`;
+			let rst = ``;
+			let prodData = data.value;
+			if(data.code == "ok"){
+				console.log(prodData[0].prodId);
+				for(let j = 0; j < prodData.length; j++){ //data.length아님 ㅅㅄㅄㅂ
+					rst += `<option value='${prodData[j].prodId}'>${prodData[j].prodNm}</option>`;
+					console.log(rst);
 				}
 			}else{
-				result += `<option>데이터 없음</option>`;
+				rst += `<option>데이터 없음</option>`;
 			}
-			prodSel.innerHTML = result;
+			prodSel.innerHTML = rst;
 		}
 	}
 });

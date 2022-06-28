@@ -32,7 +32,7 @@ if(rs.next()){	//데이터가 있음
 	    {
 		"code" : "ok",
 		"value" :[
-					{
+					{	"prodImg" : "<%=prodImg%>",
 						"prodName" : "<%=prodName%>",
 						"prodId" : "<%=prodId%>",
 						"prodPrice" : "<%=prodPrice%>",
