@@ -7,6 +7,14 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <script src="../js/jquery-3.6.0.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<style>
+	#details{
+		font-size: 1.5em;
+	}
+	table{
+		text-align: center;
+	}
+</style>
 </head>
 <body>
 	<div class="col-md-3">
@@ -23,15 +31,15 @@
 
 	<br><br>
 	
-	<div>prod의 상세정보</div>
+	<div id='details'>[상세정보]</div>
 <script>
 //js로 ajax - lprod
 let lprodSel = document.getElementById('lprod');
 window.onload = function(){
-	let req = new XMLHttpRequest();
-	req.open('get', './jsp/lprod_JSON.jsp');
-	req.send();
-	req.onreadystatechange = function(){
+let xhr = new XMLHttpRequest();
+	xhr.open('get', './jsp/lprod_JSON.jsp'); //async의 default : true 비동기
+	xhr.send();
+	xhr.onreadystatechange = function(){
 		if(this.readyState == 4 && this.status == 200){
 			let data = JSON.parse(this.responseText);
 			let result = ``;
@@ -40,6 +48,19 @@ window.onload = function(){
 				result += `<option value='${data[i].lprod_gu}'>${data[i].lprod_nm}</option>`;
 			}
 			lprodSel.innerHTML = result;
+			//trigger
+/* 			//old
+			let oldEvent = document.createEvent('Event');
+//			oldEvent.initEvent('event','bubble','cancel')
+			oldEvent.initEvent('change','true','true');
+			lprodSel.dispatchEvent(oldEvent);*/
+			
+			//new
+			let newEvent = new MouseEvent('change',{
+				bubbled : true,
+				cancelable : true
+			});
+			lprodSel.dispatchEvent(newEvent);
 		}
 	}
 };
@@ -48,24 +69,58 @@ window.onload = function(){
 let prodSel = document.getElementById('prod');
 lprodSel.addEventListener('change', function(){ //event 바꿔보기
 	let lprodGu = this.value;
-	let req = new XMLHttpRequest();
-	req.open('get', './jsp/prod.jsp?lprod_gu='+lprodGu);
-	req.send();
-	req.onreadystatechange = function(){
+	let xhr = new XMLHttpRequest();
+	xhr.open('get', './jsp/prod.jsp?lprod_gu='+lprodGu);
+	xhr.send();
+	xhr.onreadystatechange = function(){
 		if(this.readyState == 4 && this.status == 200){
 			let data = JSON.parse(this.responseText);
 			let rst = ``;
 			let prodData = data.value;
 			if(data.code == "ok"){
-				console.log(prodData[0].prodId);
 				for(let j = 0; j < prodData.length; j++){ //data.length아님 ㅅㅄㅄㅂ
 					rst += `<option value='${prodData[j].prodId}'>${prodData[j].prodNm}</option>`;
-					console.log(rst);
 				}
 			}else{
 				rst += `<option>데이터 없음</option>`;
 			}
 			prodSel.innerHTML = rst;
+			//trigger
+			let newEvent = new MouseEvent('change',{
+				bubbled : true,
+				cancelable : true
+			});
+			prodSel.dispatchEvent(newEvent);
+		}
+	}
+});
+
+//js로 ajax - prod details
+let detailDiv = document.getElementById('details');
+prodSel.addEventListener('change', function(){
+	let prodId = this.value;
+	let xhr = new XMLHttpRequest();	
+	xhr.open('get', './jsp/prodDetails.jsp?prodId='+prodId);
+	xhr.send();
+	xhr.onreadystatechange = function(){
+		if(this.readyState == 4 && this.status == 200){
+			let data = JSON.parse(this.responseText);
+			let detailRst = `<table border='1px' class='table table-striped'>`;
+			let prodDetail = data.value;
+			if(data.code == "ok"){
+				for(let k = 0; k < prodDetail.length; k++){
+					detailRst += `<tr><th>상품명</th><td>${prodDetail[k].prodName}</td><tr>`;
+					detailRst += `<tr><th>상품 코드</th><td>${prodDetail[k].prodId}</td><tr>`;
+					detailRst += `<tr><th>상품 가격</th><td>${prodDetail[k].prodPrice}</td><tr>`;
+					detailRst += `<tr><th>상품 사이즈</th><td>${prodDetail[k].prodSize}</td><tr>`;
+					detailRst += `<tr><th>상품 색상</th><td>${prodDetail[k].prodColor}</td><tr>`;
+					detailRst += `<tr><th>상품 설명</th><td>${prodDetail[k].prodOutline}</td><tr>`;
+				}
+			}else{
+				detailRst += `<tr><th>데이터 없음</th><td>다른 항목을 선택하세요</td><tr>`;
+			}
+			detailRst += `</table>`;
+			detailDiv.innerHTML = detailRst;
 		}
 	}
 });
