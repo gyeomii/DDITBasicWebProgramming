@@ -211,14 +211,26 @@ function vaild(){
 $.ajax({
 	url : 'join.jsp',
 	type : 'post',
-	data : serialize,
-	success : function(){
-		
+	//data : serialize,
+	contentType : 'application/json; charset=utf-8',
+	data : JSON.stringify(serializeArr), //js object => json object
+	success : function(num){
+		if(num == 1){
+			//성공
+			$('#joinspan').html("회원가입 성공").css({
+				'color' : 'green', 'font-weight' : 'bold'
+			});
+		}else{
+			//실패
+			$('#joinspan').html("회원가입 실패").css({
+				'color' : 'red', 'font-weight' : 'bold'
+			});
+		}
 	},
 	error : function(xhr) {
 		alert(xhr.status);
 	},
-	dataType : ''
+	dataType : 'html'
 });
 	 
 }
